@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Borç: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Tutar: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Borcu öde",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Ödemeyi onayla",
+  "SPIREECONOMY-REPAY_PROMPT": "Geri ödenecek altın miktarını seç.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Borç",
+  "SPIREECONOMY-DEBT_HOVER.description": "Ödenmemiş kredi bakiyen. Borcunu bir tüccarda ödeyebilirsin.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Borcu öde",
+  "SPIREECONOMY-REPAY_HOVER.description": "Ödenecek miktarı seç. Mevcut altınından veya kalan borcundan fazlasını ödeyemezsin."
+}

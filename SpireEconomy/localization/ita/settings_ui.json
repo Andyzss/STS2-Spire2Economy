@@ -1,0 +1,9 @@
+{
+  "SPIREECONOMY.mod_title": "Economia della Guglia",
+  "SPIREECONOMY-DEBT.title": "Debito",
+  "SPIREECONOMY-MAX_DEBT.title": "Debito massimo",
+  "SPIREECONOMY-BLACK_MARKET.title": "Mercato nero",
+  "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "Moltiplicatore prezzi del mercato nero",
+  "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "Valore di vendita delle reliquie",
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Peso evento del mercato nero"
+}

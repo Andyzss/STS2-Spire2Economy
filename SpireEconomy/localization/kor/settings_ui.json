@@ -1,0 +1,9 @@
+{
+  "SPIREECONOMY.mod_title": "첨탑 경제",
+  "SPIREECONOMY-DEBT.title": "빚",
+  "SPIREECONOMY-MAX_DEBT.title": "최대 빚",
+  "SPIREECONOMY-BLACK_MARKET.title": "암시장",
+  "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "암시장 가격 배율",
+  "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "유물 판매 가치",
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "암시장 이벤트 가중치"
+}

@@ -1,0 +1,2 @@
+Card,Rarity,Type,Cost,Description
+DebtCurse,Curse,Curse,0,"Outstanding debt: {Debt} Gold. Unplayable. Cannot be removed normally."

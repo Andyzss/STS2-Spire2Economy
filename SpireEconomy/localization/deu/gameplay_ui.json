@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Schulden: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Betrag: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Schulden tilgen",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Rückzahlung bestätigen",
+  "SPIREECONOMY-REPAY_PROMPT": "Wähle, wie viel Gold du zurückzahlen möchtest.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Schulden",
+  "SPIREECONOMY-DEBT_HOVER.description": "Dein noch nicht zurückgezahlter Kredit. Schulden können beim Händler getilgt werden.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Schulden tilgen",
+  "SPIREECONOMY-REPAY_HOVER.description": "Wähle einen Betrag. Du kannst nicht mehr als dein Gold oder deine Schulden zurückzahlen."
+}

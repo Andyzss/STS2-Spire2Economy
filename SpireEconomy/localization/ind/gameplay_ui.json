@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Utang: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Jumlah: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Lunasi Utang",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Konfirmasi pembayaran",
+  "SPIREECONOMY-REPAY_PROMPT": "Pilih jumlah emas yang ingin dibayarkan.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Utang",
+  "SPIREECONOMY-DEBT_HOVER.description": "Sisa pinjaman yang belum dibayar. Utang dapat dilunasi di pedagang.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Lunasi Utang",
+  "SPIREECONOMY-REPAY_HOVER.description": "Pilih jumlah pembayaran. Jumlahnya tidak boleh melebihi emas atau utangmu saat ini."
+}

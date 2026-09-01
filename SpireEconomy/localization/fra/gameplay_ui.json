@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Dette : {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Montant : {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Rembourser la dette",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Confirmer le remboursement",
+  "SPIREECONOMY-REPAY_PROMPT": "Choisissez la quantité d’or à rembourser.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Dette",
+  "SPIREECONOMY-DEBT_HOVER.description": "Le solde restant de votre emprunt. La dette peut être remboursée chez un marchand.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Rembourser la dette",
+  "SPIREECONOMY-REPAY_HOVER.description": "Choisissez un montant. Il ne peut dépasser votre or actuel ni votre dette restante."
+}

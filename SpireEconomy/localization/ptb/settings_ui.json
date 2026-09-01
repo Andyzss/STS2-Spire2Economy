@@ -1,0 +1,9 @@
+{
+  "SPIREECONOMY.mod_title": "Economia da Torre",
+  "SPIREECONOMY-DEBT.title": "Dívida",
+  "SPIREECONOMY-MAX_DEBT.title": "Dívida máxima",
+  "SPIREECONOMY-BLACK_MARKET.title": "Mercado Negro",
+  "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "Multiplicador de preços do Mercado Negro",
+  "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "Valor de venda de relíquias",
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Peso do evento Mercado Negro"
+}

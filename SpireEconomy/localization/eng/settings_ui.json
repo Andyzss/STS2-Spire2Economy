@@ -1,0 +1,9 @@
+{
+  "SPIREECONOMY.mod_title": "Spire Economy",
+  "SPIREECONOMY-DEBT.title": "Debt",
+  "SPIREECONOMY-MAX_DEBT.title": "Maximum debt",
+  "SPIREECONOMY-BLACK_MARKET.title": "Black Market",
+  "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "Black Market price multiplier",
+  "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "Relic sale value",
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Black Market event weight"
+}

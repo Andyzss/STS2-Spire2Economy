@@ -1,0 +1,9 @@
+{
+  "title": "Spire Economy",
+  "description": "Loans, personal debt, multiplayer relic trading, and a black market event.",
+  "visibility": "private",
+  "changeNote": "None",
+  "tags": [],
+  "dependencies": [3737335127],
+  "contentDescriptors": []
+}

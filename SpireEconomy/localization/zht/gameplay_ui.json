@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "欠款：{Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "還款金額：{Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "償還欠款",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "確認還款",
+  "SPIREECONOMY-REPAY_PROMPT": "選擇要償還的金幣數量。",
+  "SPIREECONOMY-DEBT_HOVER.title": "欠款",
+  "SPIREECONOMY-DEBT_HOVER.description": "你尚未償還的貸款總額。欠款可以在商人處償還。",
+  "SPIREECONOMY-REPAY_HOVER.title": "償還欠款",
+  "SPIREECONOMY-REPAY_HOVER.description": "選擇要償還的金額。還款不能超過你目前的金幣或尚未償還的欠款。"
+}

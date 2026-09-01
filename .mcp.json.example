@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "sts2-modding": {
+      "command": "/path/to/sts2-modding-mcp/.venv/bin/python",
+      "args": ["/path/to/sts2-modding-mcp/run.py"],
+      "env": {
+        "DOTNET_ROLL_FORWARD": "Major",
+        "PATH": "/usr/local/share/dotnet:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    }
+  }
+}

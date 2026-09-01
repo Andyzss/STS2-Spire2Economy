@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Debito: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Importo: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Salda debito",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Conferma rimborso",
+  "SPIREECONOMY-REPAY_PROMPT": "Scegli quanto oro rimborsare.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Debito",
+  "SPIREECONOMY-DEBT_HOVER.description": "Il saldo del prestito ancora da rimborsare. Puoi saldarlo presso un mercante.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Salda debito",
+  "SPIREECONOMY-REPAY_HOVER.description": "Scegli un importo. Non può superare il tuo oro attuale o il debito residuo."
+}

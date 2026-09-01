@@ -1,0 +1,9 @@
+{
+  "SPIREECONOMY.mod_title": "Ekonomia Iglicy",
+  "SPIREECONOMY-DEBT.title": "Dług",
+  "SPIREECONOMY-MAX_DEBT.title": "Maksymalny dług",
+  "SPIREECONOMY-BLACK_MARKET.title": "Czarny rynek",
+  "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "Mnożnik cen czarnego rynku",
+  "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "Wartość sprzedaży reliktów",
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Waga wydarzenia czarnego rynku"
+}

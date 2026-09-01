@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Deuda: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Importe: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Pagar deuda",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Confirmar pago",
+  "SPIREECONOMY-REPAY_PROMPT": "Elige cuánto oro quieres pagar.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Deuda",
+  "SPIREECONOMY-DEBT_HOVER.description": "El saldo pendiente de tu préstamo. Puedes pagar la deuda en un mercader.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Pagar deuda",
+  "SPIREECONOMY-REPAY_HOVER.description": "Elige una cantidad. No puedes pagar más que tu oro actual o tu deuda pendiente."
+}

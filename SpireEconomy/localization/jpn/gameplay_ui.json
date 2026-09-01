@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "借金：{Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "返済額：{Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "借金を返済",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "返済を確定",
+  "SPIREECONOMY-REPAY_PROMPT": "返済するゴールドの量を選んでください。",
+  "SPIREECONOMY-DEBT_HOVER.title": "借金",
+  "SPIREECONOMY-DEBT_HOVER.description": "まだ返済していない借金の総額。商人のもとで返済できます。",
+  "SPIREECONOMY-REPAY_HOVER.title": "借金を返済",
+  "SPIREECONOMY-REPAY_HOVER.description": "返済額を選びます。現在のゴールドまたは残りの借金を超えて返済することはできません。"
+}

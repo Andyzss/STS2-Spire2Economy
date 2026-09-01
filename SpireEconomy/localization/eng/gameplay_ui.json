@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Debt: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Amount: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Repay Debt",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Confirm Repayment",
+  "SPIREECONOMY-REPAY_PROMPT": "Choose how much gold to repay.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Debt",
+  "SPIREECONOMY-DEBT_HOVER.description": "Your outstanding loan balance. Debt can be repaid at a merchant.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Repay Debt",
+  "SPIREECONOMY-REPAY_HOVER.description": "Choose an amount to repay. You cannot repay more than your current gold or outstanding debt."
+}

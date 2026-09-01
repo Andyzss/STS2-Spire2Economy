@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Dívida: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Valor: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Quitar dívida",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Confirmar pagamento",
+  "SPIREECONOMY-REPAY_PROMPT": "Escolha quanto ouro deseja pagar.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Dívida",
+  "SPIREECONOMY-DEBT_HOVER.description": "O saldo restante do seu empréstimo. A dívida pode ser paga em um mercador.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Quitar dívida",
+  "SPIREECONOMY-REPAY_HOVER.description": "Escolha um valor. Ele não pode superar seu ouro atual nem a dívida restante."
+}

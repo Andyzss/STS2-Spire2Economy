@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Долг: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Сумма: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Погасить долг",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Подтвердить выплату",
+  "SPIREECONOMY-REPAY_PROMPT": "Выберите количество золота для погашения.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Долг",
+  "SPIREECONOMY-DEBT_HOVER.description": "Непогашенный остаток займа. Долг можно выплатить у торговца.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Погасить долг",
+  "SPIREECONOMY-REPAY_HOVER.description": "Выберите сумму. Она не может превышать имеющееся золото или остаток долга."
+}

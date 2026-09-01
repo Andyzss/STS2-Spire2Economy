@@ -1,0 +1,9 @@
+{
+  "SPIREECONOMY.mod_title": "塔の経済",
+  "SPIREECONOMY-DEBT.title": "借金",
+  "SPIREECONOMY-MAX_DEBT.title": "借金上限",
+  "SPIREECONOMY-BLACK_MARKET.title": "闇市場",
+  "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "闇市場の価格倍率",
+  "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "レリック売却価格",
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "闇市場イベントの出現率"
+}

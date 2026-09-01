@@ -1,0 +1,9 @@
+{
+  "SPIREECONOMY.mod_title": "เศรษฐกิจแห่งหอคอย",
+  "SPIREECONOMY-DEBT.title": "หนี้",
+  "SPIREECONOMY-MAX_DEBT.title": "หนี้สูงสุด",
+  "SPIREECONOMY-BLACK_MARKET.title": "ตลาดมืด",
+  "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "ตัวคูณราคาตลาดมืด",
+  "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "มูลค่าขายรีลิก",
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "น้ำหนักอีเวนต์ตลาดมืด"
+}

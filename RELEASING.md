@@ -1,0 +1,183 @@
+# How to release
+
+This document tells you how to make a version and how to release it. The flow is
+one command, `scripts/dev.sh release`. You then run a git push by hand. Two rules
+are the most important:
+
+- Every player-visible change gets a `CHANGELOG.md` entry.
+- Each version section in the changelog is the Steam Workshop update note for
+  that version.
+
+## Version policy
+
+The version is in one location only: the mod manifest json (`"version": "vX.Y.Z"`).
+Only `scripts/dev.sh release` changes it. The git tags use the same value
+(`vX.Y.Z`). This project follows [Semantic Versioning](https://semver.org). For a
+game mod, read the rules as follows:
+
+| Increase                                  | When to use it                                                                                                                        | Examples                                                                            |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **PATCH** (`0.1.0 → 0.1.1`)               | Balance changes, bug fixes, and fixes to text, tooltips, or art. This increase adds no content and removes no content.                | Change the cost of a card. Fix an interaction. Change the text of a keyword.        |
+| **MINOR** (`0.1.0 → 0.2.0`)               | New content, or more mechanics that do not break the current saves.                                                                   | Add cards, relics, or potions. Add a keyword.                                       |
+| **MAJOR** (`0.x → 1.0`, then `1.x → 2.0`) | Changes that break the saves, or changes to the identity of the mod. **`1.0.0` is kept for the first public Steam Workshop release.** | Remove or rename large card sets. Change a core mechanic completely.                |
+
+Two related fields in the manifest:
+
+- **`min_game_version`**: change this field by hand when a release needs a newer
+  Slay the Spire 2 build.
+- **BaseLib `min_version`**: do **not** change this field by hand. The build sets
+  it automatically from the BaseLib version that you build against
+  (`UpdateDependencyVersions` in the csproj).
+
+## The changelog (hybrid workflow)
+
+You write `CHANGELOG.md` by hand in the
+[Keep a Changelog](https://keepachangelog.com) format. The
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) give you
+the first draft:
+
+1. Write the commit messages with Conventional Commit prefixes (`feat:`, `fix:`,
+   `refactor:`, …). A bad commit message gives a bad changelog draft.
+2. Before a release, run `scripts/dev.sh changelog`. The command reads the
+   commits after the last tag. It prints a draft in groups (Added / Fixed /
+   Changed / Other). The command writes no files.
+3. Paste the applicable lines below `## [Unreleased]`. Then **write these lines
+   again in language for players**. Remove the lines that apply only to
+   development (build, ci, test, and most chores). Put each line in one of these
+   Keep a Changelog sections: Added, Changed, Deprecated, Removed, Fixed,
+   Security.
+
+The `## [Unreleased]` section that you write is the release note. The `release`
+command does not run when the `## [Unreleased]` section is empty.
+
+### Entry style (match the official STS2 patch notes)
+
+Each entry must read like a line from a Mega Crit patch note. Study the real
+notes for the current voice: they ship in the game at
+`res://localization/eng/patch_notes/<date>.md`.
+
+- **Lead with a past-tense verb**, then the entity and its kind, then the change:
+  - **Buffed** X card/relic/potion: `<stat>` increased from `A -> B`
+  - **Nerfed** X card/relic/potion: `<stat>` decreased from `A -> B`
+  - **Reworked** X card: `"old text" -> "new text"`
+  - **Changed** X card: use for rarity swaps, upgrade-path changes, or a mix of
+    a buff and a nerf that is neither on the whole
+  - **Added** / **Removed** / **Renamed** / **Moved** for those operations
+- **Buffed/Nerfed name the direction; the arrow shows the numbers.** The
+  direction word must match the player's benefit, not the number: a lower
+  requirement is a **buff**.
+- **Use the `A -> B` arrow** for every value change. For upgraded cards, the base
+  and upgraded values ride together: `50% (75%) -> 75% (100%)`.
+- **Quote new or reworked card text verbatim**, in the same wording the card
+  shows in game.
+- **One line per change.** Split a compound change into nested bullets rather
+  than a long sentence. Keep development detail and UI micro-copy out.
+- **Do not bold entity names.** The in-game notes wrap them in `[b]...[/b]`; this
+  file is plain Keep a Changelog markdown, and the released sections do not bold.
+
+A released version section is the published Steam Workshop note for that version.
+Do not rewrite a tagged section's meaning after release; a stylistic touch-up is
+fine, but update the Workshop note too if you have already posted it.
+
+## How to cut a release
+
+```sh
+scripts/dev.sh changelog        # draft; curate ## [Unreleased] in CHANGELOG.md by hand
+scripts/dev.sh release minor    # or: patch | major | an explicit X.Y.Z
+                                # examine the diff, then:
+scripts/dev.sh publish-release  # commit, tag, push, and put it on GitHub
+```
+
+The `release` command (see `do_release` in `scripts/dev.sh`) does these steps:
+
+1. **Preflight**: the working tree must be clean, the branch must be `main`, and
+   the `## [Unreleased]` section must not be empty. The command then runs
+   `dotnet build` and the `lint` check. Play the current build before a release;
+   the command does not verify the mod against the live game for you.
+2. **Compute**: the command calculates the new version from the keyword
+   (`patch`, `minor`, or `major`). You can also give an explicit `X.Y.Z` value.
+3. **Update**: the command changes the `version` field in the manifest. In
+   `CHANGELOG.md`, it replaces `## [Unreleased]` with `## [X.Y.Z] - <date>`. It
+   then adds a new, empty Unreleased section.
+4. **Build and package**: the command runs `dotnet publish`. It then writes the
+   zip that players install and `dist/RELEASE_NOTES-vX.Y.Z.txt` (the changelog
+   section for this version, one bullet per line) into `dist/`.
+5. **Refresh the Workshop workspace**: the command copies the same three runtime
+   files into `workshop/content/` and writes the version and the notes into the
+   `changeNote` field of `workshop/workshop.json`.
+6. **Stop**: the command writes no history. Read the diff before you publish it.
+
+Git ignores the `dist/` folder. You build these files again for each release. Do
+not commit them.
+
+The `publish-release` command (see `do_publish_release`) then does the rest. It
+needs the [GitHub CLI](https://cli.github.com), logged in with `gh auth login`:
+
+1. **Commit**: the release edit is the manifest, `CHANGELOG.md`, and
+   `workshop/workshop.json`. Any other pending change stops the command, because
+   an unrelated edit does not belong in a release commit.
+2. **Tag**: it puts `vX.Y.Z` on the tip commit. A tag that already points at
+   another commit only moves with `--force`, since moving a public tag rewrites
+   what other clones already have.
+3. **Push**: the branch and the tag. With `--force` the branch push uses
+   `--force-with-lease`, which stops when the remote holds a commit that this
+   clone has never seen.
+4. **Release**: it creates the GitHub Release, or updates it when the tag already
+   has one. The zip is the artifact and `dist/RELEASE_NOTES-vX.Y.Z.txt` is the
+   body. Any `0.x` version is marked a pre-release. `--draft` keeps it unlisted.
+
+The version comes from the manifest. Pass `vX.Y.Z` to publish a version other
+than the current one.
+
+## How players install it
+
+**The Steam Workshop is the best method to install the mod and to play it.** The
+installation is one click. The Workshop updates the mod automatically. It also
+installs the **BaseLib** dependency automatically.
+
+**Manual installation (from a GitHub Release zip):**
+
+1. Install [**BaseLib**](https://github.com/Alchyr/BaseLib-StS2) first.
+2. Download the release zip. Extract the mod folder into the `mods/` folder of
+   your game:
+   - **macOS**: `…/Slay the Spire 2/SlayTheSpire2.app/Contents/MacOS/mods/`
+   - **Windows/Linux**: the `mods/` folder in the same location as the game
+     executable.
+3. Make sure that your game version is `min_game_version` from the manifest or
+   higher. Then start the game.
+
+The zip contains only the files that the game loads: the dll, the manifest json,
+and the pck, in one top-level mod folder. Players do not need a clone of the
+repo, .NET, or Godot.
+
+## The Steam Workshop
+
+The `workshop/` folder is a
+[ModUploader](https://github.com/sethmcleod/sts2-mod-uploader) workspace. Each
+`scripts/dev.sh release` refreshes it, so the upload is one more command:
+
+```sh
+ModUploader.exe upload -w workshop
+```
+
+| File                    | What it is                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| `workshop.json`         | title, description, visibility, tags, dependencies. `release` writes `changeNote`. |
+| `content/`              | the dll, the manifest json, and the pck. `release` writes them. Git ignores it.    |
+| `image.png`             | the Workshop thumbnail. **Replace the placeholder.** It must be under 1 MB.        |
+| `mod_id.txt`            | the Workshop id. The uploader writes it after the first upload. Commit it.         |
+| `previews/`             | more preview images, shown next to `image.png`. Optional. Each under 1 MB.         |
+| `.gdignore`             | keeps Godot from importing these images into the `.pck`.                           |
+
+Three points that are easy to get wrong:
+
+- **`description` takes Steam BBCode**, not markdown: `[h2]`, `[list]`, `[*]`,
+  `[b]`, `[i]`. Newlines are `\n` inside the JSON string.
+- **An empty `previews/` folder deletes every preview** on the Workshop. The
+  uploader keys previews by filename and removes the ones it does not find. Omit
+  the folder to leave them unchanged; the template ships no `previews/` for this
+  reason.
+- **`dependencies` holds Workshop ids, not names.** The template lists BaseLib
+  (`3737335127`) already, which is what makes the Workshop install BaseLib for
+  the player automatically. Verify the id against the BaseLib Workshop URL before
+  your first upload.

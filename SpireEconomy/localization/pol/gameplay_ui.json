@@ -1,0 +1,11 @@
+{
+  "SPIREECONOMY-DEBT_HUD": "Dług: {Debt}",
+  "SPIREECONOMY-REPAY_AMOUNT": "Kwota: {Amount} / {Debt}",
+  "SPIREECONOMY-REPAY_DEBT": "Spłać dług",
+  "SPIREECONOMY-CONFIRM_REPAYMENT": "Potwierdź spłatę",
+  "SPIREECONOMY-REPAY_PROMPT": "Wybierz ilość złota do spłaty.",
+  "SPIREECONOMY-DEBT_HOVER.title": "Dług",
+  "SPIREECONOMY-DEBT_HOVER.description": "Pozostałe saldo pożyczki. Dług można spłacić u kupca.",
+  "SPIREECONOMY-REPAY_HOVER.title": "Spłać dług",
+  "SPIREECONOMY-REPAY_HOVER.description": "Wybierz kwotę. Nie może przekroczyć posiadanego złota ani pozostałego długu."
+}
