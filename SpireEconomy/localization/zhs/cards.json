@@ -1,4 +1,4 @@
 {
   "SPIREECONOMY-DEBT_CURSE.title": "欠款凭证",
-  "SPIREECONOMY-DEBT_CURSE.description": "未偿欠款：{Debt} 金币。NL 无法打出，无法通过普通方式移除。还清欠款后移除。"
+  "SPIREECONOMY-DEBT_CURSE.description": "欠款：{Debt} 金币。\n还清后自动移除。"
 }

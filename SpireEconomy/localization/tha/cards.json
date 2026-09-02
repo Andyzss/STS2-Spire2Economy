@@ -1,4 +1,4 @@
 {
   "SPIREECONOMY-DEBT_CURSE.title": "ใบสัญญาหนี้",
-  "SPIREECONOMY-DEBT_CURSE.description": "หนี้คงค้าง: {Debt} ทอง NL ไม่สามารถเล่นหรือนำออกด้วยวิธีปกติได้ จะถูกนำออกเมื่อชำระหนี้ครบแล้ว"
+  "SPIREECONOMY-DEBT_CURSE.description": "หนี้: {Debt} ทอง\nจะถูกนำออกโดยอัตโนมัติเมื่อชำระครบแล้ว"
 }

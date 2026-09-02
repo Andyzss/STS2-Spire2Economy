@@ -48,6 +48,34 @@ public sealed class LocalizationCoverageTests
         }
     }
 
+    [Fact]
+    public void EveryDebtCardPlacesAutomaticRemovalOnANewLine()
+    {
+        string localizationRoot = FindLocalizationRoot();
+
+        foreach (string language in SupportedLanguages)
+        {
+            string description = ReadValue(localizationRoot, language, "cards.json",
+                "SPIREECONOMY-DEBT_CURSE.description");
+            Assert.Contains('\n', description);
+            Assert.DoesNotContain(" NL ", description);
+        }
+    }
+
+    [Fact]
+    public void EveryLanguageHasBothMerchantRepaymentResponses()
+    {
+        string localizationRoot = FindLocalizationRoot();
+
+        foreach (string language in SupportedLanguages)
+        {
+            Assert.False(string.IsNullOrWhiteSpace(ReadValue(localizationRoot, language,
+                "gameplay_ui.json", "SPIREECONOMY-REPAY_NO_DEBT")));
+            Assert.False(string.IsNullOrWhiteSpace(ReadValue(localizationRoot, language,
+                "gameplay_ui.json", "SPIREECONOMY-REPAY_NO_GOLD")));
+        }
+    }
+
     private static HashSet<string> ReadKeys(string path)
     {
         using JsonDocument document = JsonDocument.Parse(File.ReadAllText(path));

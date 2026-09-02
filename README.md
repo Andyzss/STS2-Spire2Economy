@@ -6,12 +6,14 @@
 
 - 商店贷款与个人债务
 - 商店还款
-- 多人营火遗物交易
 - 稀有黑市事件
 
-当前完成阶段 1–4：Debt Curse 持久化/唯一性/移除保护、`DebtManager`、`LoanService`、
-标准商店卡牌与遗物贷款、鼠标优先的商店还款 UI，以及存读档校验。黑市玩法和多人营火交易
-尚未实现。架构与 API 见 [TECHNICAL_DESIGN.md](TECHNICAL_DESIGN.md)，工具链安装见
+当前已经完成 Debt Curse 持久化/唯一性/移除保护、`DebtManager`、`LoanService`、标准商店
+卡牌/遗物/药水/卡牌移除贷款、商店还款 UI、顶部栏欠款显示和 16 种语言本地化。黑市玩法尚未实现。
+
+多人营火遗物交易已于 2026-09-02 从项目范围中取消；本项目也不实现卡牌交易或玩家之间的
+金币交易。当前范围与完成情况见 [PROJECT_STATUS.md](PROJECT_STATUS.md)，架构与 API 见
+[TECHNICAL_DESIGN.md](TECHNICAL_DESIGN.md)，工具链安装见
 [BUILD_PREREQUISITES.md](BUILD_PREREQUISITES.md)，验证状态见 [VALIDATION.md](VALIDATION.md)。
 
 ## 本机构建

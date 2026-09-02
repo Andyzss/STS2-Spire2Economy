@@ -7,5 +7,7 @@
   "SPIREECONOMY-DEBT_HOVER.title": "Utang",
   "SPIREECONOMY-DEBT_HOVER.description": "Sisa pinjaman yang belum dibayar. Utang dapat dilunasi di pedagang.",
   "SPIREECONOMY-REPAY_HOVER.title": "Lunasi Utang",
-  "SPIREECONOMY-REPAY_HOVER.description": "Pilih jumlah pembayaran. Jumlahnya tidak boleh melebihi emas atau utangmu saat ini."
+  "SPIREECONOMY-REPAY_HOVER.description": "Pilih jumlah pembayaran. Jumlahnya tidak boleh melebihi emas atau utangmu saat ini.",
+  "SPIREECONOMY-REPAY_NO_DEBT": "Sudah kuperiksa dua kali. Kau tidak berutang apa pun. Mau membayar angin?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Kantong emasmu sunyi sekali. Kembalilah saat ia punya sesuatu untuk dikatakan."
 }

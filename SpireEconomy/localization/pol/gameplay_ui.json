@@ -7,5 +7,7 @@
   "SPIREECONOMY-DEBT_HOVER.title": "Dług",
   "SPIREECONOMY-DEBT_HOVER.description": "Pozostałe saldo pożyczki. Dług można spłacić u kupca.",
   "SPIREECONOMY-REPAY_HOVER.title": "Spłać dług",
-  "SPIREECONOMY-REPAY_HOVER.description": "Wybierz kwotę. Nie może przekroczyć posiadanego złota ani pozostałego długu."
+  "SPIREECONOMY-REPAY_HOVER.description": "Wybierz kwotę. Nie może przekroczyć posiadanego złota ani pozostałego długu.",
+  "SPIREECONOMY-REPAY_NO_DEBT": "Sprawdziłem dwa razy. Nic mi nie jesteś winien. Chcesz spłacić powietrze?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Twoja sakiewka jest podejrzanie cicha. Wróć, gdy będzie miała coś do powiedzenia."
 }

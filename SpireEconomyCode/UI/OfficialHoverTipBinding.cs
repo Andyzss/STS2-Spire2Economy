@@ -5,6 +5,12 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
 namespace SpireEconomy.SpireEconomyCode.UI;
 
+internal enum OfficialHoverTipPlacement
+{
+    AdaptiveSide,
+    TopBarBelow
+}
+
 /// <summary>
 /// Connects a mod control to the game's native hover-tip presentation for both pointer hover
 /// and keyboard/controller focus. The owner remains responsible for its normal input behavior.
@@ -13,12 +19,18 @@ internal sealed class OfficialHoverTipBinding
 {
     private readonly Control _owner;
     private readonly HoverTip _tip;
+    private readonly OfficialHoverTipPlacement _placement;
     private NHoverTipSet? _activeSet;
     private bool _shown;
 
-    internal OfficialHoverTipBinding(Control owner, string titleKey, string descriptionKey)
+    internal OfficialHoverTipBinding(
+        Control owner,
+        string titleKey,
+        string descriptionKey,
+        OfficialHoverTipPlacement placement = OfficialHoverTipPlacement.AdaptiveSide)
     {
         _owner = owner;
+        _placement = placement;
         _tip = new HoverTip(
             new LocString("gameplay_ui", titleKey),
             new LocString("gameplay_ui", descriptionKey));
@@ -36,6 +48,17 @@ internal sealed class OfficialHoverTipBinding
             return;
 
         _shown = true;
+        if (_placement == OfficialHoverTipPlacement.TopBarBelow)
+        {
+            // Match NTopBarHp.OnFocus and NTopBarGold.OnFocus exactly: no directional
+            // alignment, then place the tip immediately below its owning HUD control.
+            _activeSet = NHoverTipSet.CreateAndShow(_owner, _tip, HoverTipAlignment.None);
+            _activeSet?.SetGlobalPosition(
+                _owner.GlobalPosition + new Vector2(0f, _owner.Size.Y + 20f),
+                false);
+            return;
+        }
+
         Rect2 visible = _owner.GetViewport().GetVisibleRect();
         float ownerCenter = _owner.GetGlobalRect().GetCenter().X;
         HoverTipAlignment alignment = ownerCenter < visible.GetCenter().X

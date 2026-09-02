@@ -14,7 +14,10 @@ internal static class MerchantFinancingReservations
     [ThreadStatic] private static MerchantEntry? _blockedEntry;
 
     internal static bool IsLoanEligible(MerchantEntry entry) =>
-        entry is MerchantCardEntry or MerchantRelicEntry;
+        entry is MerchantCardEntry
+            or MerchantRelicEntry
+            or MerchantPotionEntry
+            or MerchantCardRemovalEntry;
 
     internal static bool BeginAttempt(MerchantEntry entry, Player player, bool ignoreCost)
     {
@@ -81,6 +84,46 @@ internal static class MerchantFinancingReservations
             Active.TryRemove(entry, out _);
     }
 
+    internal static async Task<bool> CompleteFinancedPurchase(
+        MerchantEntry entry,
+        Task<bool> vanillaPurchase)
+    {
+        if (!TryGet(entry, out Reservation? reservation))
+            return await vanillaPurchase;
+
+        try
+        {
+            bool purchased;
+            try
+            {
+                purchased = await vanillaPurchase;
+            }
+            catch
+            {
+                // Restore only the wallet mutation. Vanilla currently mutates inventory/deck only
+                // on success; item/removal rollback remains an upstream atomicity limitation.
+                reservation.Player.Gold = reservation.GoldBefore;
+                throw;
+            }
+
+            if (!purchased)
+            {
+                reservation.Player.Gold = reservation.GoldBefore;
+                return false;
+            }
+
+            if (!await DebtManager.TryAddDebtAsync(reservation.Player, reservation.Shortfall))
+                throw new InvalidOperationException(
+                    "Financed merchant purchase completed without durable debt state.");
+
+            return true;
+        }
+        finally
+        {
+            Release(entry);
+        }
+    }
+
     internal sealed record Reservation(Player Player, int Price, int GoldBefore, int Shortfall);
 }
 
@@ -113,43 +156,34 @@ internal static class MerchantLoanPurchasePatch
     {
         MerchantFinancingReservations.EndSynchronousAttempt();
         if (__state)
-            __result = CompleteFinancedPurchase(__instance, __result);
+            __result = MerchantFinancingReservations.CompleteFinancedPurchase(__instance, __result);
+    }
+}
+
+[HarmonyPatch(
+    typeof(MerchantCardRemovalEntry),
+    nameof(MerchantCardRemovalEntry.OnTryPurchaseWrapper),
+    typeof(MerchantInventory),
+    typeof(bool),
+    typeof(bool))]
+internal static class MerchantCardRemovalLoanPurchasePatch
+{
+    private static void Prefix(
+        MerchantCardRemovalEntry __instance,
+        MerchantInventory inventory,
+        bool ignoreCost,
+        out bool __state)
+    {
+        __state = MerchantFinancingReservations.BeginAttempt(__instance, inventory.Player, ignoreCost);
     }
 
-    private static async Task<bool> CompleteFinancedPurchase(MerchantEntry entry, Task<bool> vanillaPurchase)
+    private static void Postfix(
+        MerchantCardRemovalEntry __instance,
+        bool __state,
+        ref Task<bool> __result)
     {
-        if (!MerchantFinancingReservations.TryGet(entry, out var reservation))
-            return await vanillaPurchase;
-
-        try
-        {
-            bool purchased;
-            try
-            {
-                purchased = await vanillaPurchase;
-            }
-            catch
-            {
-                // Restore only the wallet mutation. Vanilla currently mutates card inventory only on
-                // success; relic grant exceptions remain an upstream atomicity risk documented in design.
-                reservation.Player.Gold = reservation.GoldBefore;
-                throw;
-            }
-
-            if (!purchased)
-            {
-                reservation.Player.Gold = reservation.GoldBefore;
-                return false;
-            }
-
-            if (!await DebtManager.TryAddDebtAsync(reservation.Player, reservation.Shortfall))
-                throw new InvalidOperationException("Financed merchant purchase completed without durable debt state.");
-
-            return true;
-        }
-        finally
-        {
-            MerchantFinancingReservations.Release(entry);
-        }
+        MerchantFinancingReservations.EndSynchronousAttempt();
+        if (__state)
+            __result = MerchantFinancingReservations.CompleteFinancedPurchase(__instance, __result);
     }
 }

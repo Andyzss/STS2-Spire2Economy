@@ -1,8 +1,12 @@
 # Spire Economy v0.1 技术设计
 
-状态：v0.1 阶段 1–4 已实现，待工具链编译与运行验证
+状态：债务、贷款与商店还款主流程已实现；黑市待实现
 调查日期：2026-09-01
 目标游戏：Slay the Spire 2 Steam 公测分支 `v0.111.0`（Build ID `24724944`）
+
+> 范围更新（2026-09-02）：多人营火遗物交易已取消，卡牌交易和玩家金币交易也不加入本项目。
+> 本文的交易 API 调查仅保留为历史技术资料，不再代表实施计划。当前权威进度见
+> [`PROJECT_STATUS.md`](PROJECT_STATUS.md)。
 
 ## 1. 基线与调查范围
 
@@ -88,8 +92,7 @@ BaseLib 继续负责现有卡牌、配置和存档集成。RitsuLib 0.5.18 已�
 - `RestSiteOption.IsEnabled`、`OnSelect(): Task<bool>`、本地/远端选择后 VFX。
 - `Hook.ShouldDisableRemainingRestSiteOptions(...)`：决定选择后是否禁用其余动作。
 
-结论：加入 Trade 入口本身不需要自建 Harmony 补丁。`OnSelect` 的布尔结果与现有营火同步语义
-必须通过原型测试确认；只有交易成功提交后才能消耗该玩家的营火动作，取消或拒绝不得消耗。
+历史结论：技术上可通过公开钩子加入 Trade 入口，但交易功能现已取消，本项目不会使用这些接口。
 
 ### 2.5 事件
 
@@ -114,9 +117,8 @@ BaseLib 继续负责现有卡牌、配置和存档集成。RitsuLib 0.5.18 已�
 - `PacketWriter` / `PacketReader`：自定义序列化。
 - `RunLocationTargetedMessageBuffer`：避免跨房间的迟到消息污染状态。
 
-结论：交易协议应为“客户端提出意图，主机验证并提交，主机广播结果”。客户端绝不直接转移
-金币或遗物。消息默认 `Reliable`、`ShouldBuffer=true`，并包含会话 ID、双方 NetId、遗物 ModelId/
-实例标识、金币数、营火 `RunLocation` 和状态版本。
+历史结论：上述接口足以构建主机权威的自定义协议，但交易功能现已取消。目前只保留这些发现，
+供未来验证债务状态的多人同步使用。
 
 ### 2.7 存档与读档
 
@@ -137,19 +139,14 @@ Normal Shop Adapter ─┐
                      ├─> LoanService ─> DebtManager ─> DebtCurse(saved amount)
 Black Market Adapter ┘
 
-TradeRestSiteOption ─> TradeService ─> TradeSession
-                                ├──> RelicTradeRules
-                                └──> authoritative multiplayer messages
-
 BlackMarketEvent ─> BlackMarketInventory
         ├──────────> LoanService (purchase only)
-        └──────────> RelicSaleRules / game relic lifecycle APIs
+        └──────────> RelicSaleRules / game relic lifecycle APIs (sale only)
 ```
 
 边界规则：
 
 - `Debt` 不引用黑市或交易。
-- `Trading` 不引用债务或黑市。
 - `BlackMarket` 只依赖贷款接口，不读取/修改 Debt 卡内部字段。
 - 平衡数值全部来自 `EconomyConfig`，不散落在玩法类中。
 - UI 只发出命令并渲染状态；业务验证留在服务层，主机再次验证。
@@ -186,16 +183,12 @@ BlackMarketEvent ─> BlackMarketInventory
 只显示该值。`IsRemovable`、牌组移除命令与直接状态移除形成三层保护；只有 DebtManager 的显式
 授权作用域可在清债或修复存档时移除。
 
-### 3.4 TradeService / TradeSession / RelicTradeRules
+### 3.4 已取消的交易设计
 
-`TradeSession` 是显式状态机：`Draft -> AwaitingConfirmations -> Committed`，任一方取消、状态过期、
-房间变化、断线或验证失败都进入 `Cancelled/Rejected`。任意报价变化都清空双方确认。
-
-主机提交前重新检查：双方仍在同一营火；尚未消费动作；遗物仍属于报价者；金币仍足够；遗物
-仍可转移；会话版本匹配。提交时按可回滚顺序操作；成功后广播最终快照并消费相关营火动作。
-
-`RelicTradeRules` 采用稳定 `ModelId` 的显式禁止列表，并叠加结构规则（Starter、已熔化、宠物、
-会改变永久槽位/角色基础状态的遗物等）。v0.1 初期应采用保守 allow-list 或强 deny-list。
+多人营火遗物交易已于 2026-09-02 取消，不再实现 `TradeService`、`TradeSession`、
+`RelicTradeRules`、Trade 营火入口或相关网络消息。现有 `Trading` 源文件只是未注册、无行为的早期
+占位骨架，可在后续整理时删除。黑市仍需要独立的 `RelicSaleRules`，但该规则只判断玩家能否把
+遗物卖给黑市，不支持玩家之间转移。
 
 ### 3.5 BlackMarketEvent / BlackMarketInventory
 
@@ -213,15 +206,17 @@ BlackMarketEvent ─> BlackMarketInventory
 
 ### 本阶段已加入
 
-1. `MerchantEntry.get_EnoughGold`：仅对 `MerchantCardEntry` / `MerchantRelicEntry` 把可融资商品
-   显示为可购买；卡牌移除、药水及其他入口不放行。
+1. `MerchantEntry.get_EnoughGold`：对标准商店卡牌、遗物、药水和卡牌移除服务提供融资可用性。
 2. `MerchantEntry.OnTryPurchaseWrapper`：建立一次性融资预约，成功后记入精确短缺额，失败不改债务。
-3. `CardModel.get_IsRemovable` / `get_IsTransformable`：Debt Curse 对普通选择器不可移除或变形。
-4. `CardPileCmd.RemoveFromDeck` 两个重载与 `CardModel.RemoveFromState`：阻止绕过 UI 的普通移除，
+3. `MerchantCardRemovalEntry.OnTryPurchaseWrapper`：覆盖卡牌移除专用的异步购买包装器；取消选牌
+   时释放预约，成功移除后才提交债务。
+4. `CardModel.get_IsRemovable` / `get_IsTransformable`：Debt Curse 对普通选择器不可移除或变形。
+5. `CardPileCmd.RemoveFromDeck` 两个重载与 `CardModel.RemoveFromState`：阻止绕过 UI 的普通移除，
    同时允许 DebtManager 的显式内部授权路径。
-5. `Player.FromSerializable` / `SyncWithSerializedPlayer`：加载及重同步后校验零张/一张规则。
-6. `NMerchantInventory.Initialize` / `Open`：注入并刷新最简鼠标还款控件。键盘/手柄焦点图尚未接入。
-7. `NTopBarGold.Initialize`：在原版金币控件旁挂载独立的债务文本子节点。节点不参与原版布局，
+6. `Player.FromSerializable` / `SyncWithSerializedPlayer`：加载及重同步后校验零张/一张规则。
+7. `NMerchantInventory.Initialize` / `Open` / `DoOpenAnimation` / `UpdateNavigation`：注入并刷新
+   还款控件，使其跟随商店动画并接入基础键盘/手柄焦点图。
+8. `NTopBarGold.Initialize`：在原版金币控件旁挂载独立的债务文本子节点。节点不参与原版布局，
    因此不会挤压或移动其他顶部栏控件。
 
 ### 本地化策略
@@ -243,22 +238,18 @@ BlackMarketEvent ─> BlackMarketInventory
 
 ### 暂不需要，原型失败后再评估
 
-- Trade 营火入口：已有 `Hook.ModifyRestSiteOptions`。
 - 自定义事件注册：BaseLib `CustomEventModel` 已覆盖。
-- 自定义多人消息注册：BaseLib `CustomMessageWrapper` / `CustomTargetedMessageWrapper` 已覆盖。
 - 黑市事件权重：先验证 BaseLib 事件池是否能表达稀有权重。
 
 ## 5. 多人风险
 
-- **双重提交**：双方确认或消息重试可能触发两次；主机必须用会话 ID 和终态幂等处理。
-- **过期报价**：确认后金币/遗物变化；提交前必须重新验证并带状态版本。
-- **实例歧义**：同一玩家可能持有多件相同 ModelId 的可堆叠遗物；只传 ModelId 不一定足够。
-- **生命周期副作用**：遗物 `AfterRemoved/AfterObtained` 可能不是可逆的，交易需保守限制。
-- **营火消费归属**：已确认成功交易消耗双方营火动作；本阶段不实现交易。
-- **断线与房间切换**：未提交会话必须取消；迟到消息需由 `RunLocation` 丢弃或缓冲。
+交易功能取消后，不再需要交易会话、双方确认或遗物转移同步。现阶段仍需关注：
+
 - **模组/配置一致性**：联机双方必须使用相同模组版本和影响平衡的配置；MaxDebt 与倍率应由主机
   作为权威值。
 - **标准购买同步**：Debt 卡添加必须复用游戏已有牌组同步路径，不能只在本地改集合。
+- **债务实时变化**：新增 Debt 卡复用游戏牌组同步路径，但现有卡上的 `SavedSpireField` 数值变化
+  仍需双人实机验证。
 
 ## 6. 建议目录结构
 
@@ -273,14 +264,10 @@ SpireEconomyCode/
 │   ├── DebtManager.cs
 │   ├── LoanService.cs
 │   └── DebtCurse.cs
-├── Trading/
-│   ├── TradeService.cs
-│   ├── TradeSession.cs
-│   └── RelicTradeRules.cs
 ├── BlackMarket/
 │   ├── BlackMarketEvent.cs
-│   └── BlackMarketInventory.cs
-├── Multiplayer/          # 实现阶段加入消息 DTO/处理器
+│   ├── BlackMarketInventory.cs
+│   └── RelicSaleRules.cs
 ├── Patches/              # 实现阶段加入最小 Harmony 补丁
 └── UI/                   # 商店还款、交易、黑市场景
 ```
@@ -293,18 +280,13 @@ SpireEconomyCode/
 4. 实现纯领域 `LoanService` 与事务测试。
 5. 接入标准商店购买 Harmony 补丁；再加入 Repay Debt UI。
 6. 实现黑市库存、事件、倍率价格、贷款购买和遗物出售。
-7. 单独完成多人协议原型，先只验证可靠消息、主机身份和双确认状态机。
-8. 在协议验证后实现营火 Trade 入口和遗物原子转移。
-9. 做单人、双人、断线重连、保存读取、重复消息及版本升级回归测试。
+7. 做单人、双人、保存读取、重复回调及版本升级回归测试。
 
 ## 8. 待验证假设
 
 1. 作者确认为 `Andy`。
-2. 金币换遗物只允许买方付给遗物持有者，还是允许反向补差价（未来交易阶段）。
-3. 遗物的移除/重新获得生命周期是否足以判定安全转移；未知遗物将默认不可交易。
-4. `SavedSpireField` 对现有 Debt 卡数值变更的实时多人广播方式仍需验证；新增卡已复用游戏奖励同步器。
-5. 原版遗物购买在取得遗物时抛异常后的回滚能力没有公开事务 API，需要运行期故障注入验证。
-6. 注入的最简 Godot 还款面板尺寸、鼠标命中和商店刷新时序需要实际游戏验证。
-7. BaseLib 3.4.5 与游戏 v0.111.0 公测分支的运行时兼容性需实际启动验证。
-8. 本机已安装 .NET SDK 9.0.317 与 Godot 4.5.1 Mono，尚未安装 Python；NuGet restore 在
-   Codex 沙箱中因用户配置读取权限停止，仍未完成编译与游戏内验证。
+2. `SavedSpireField` 对现有 Debt 卡数值变更的实时多人广播方式仍需验证；新增卡已复用游戏奖励同步器。
+3. 原版遗物购买在取得遗物时抛异常后的回滚能力没有公开事务 API，需要运行期故障注入验证。
+4. 黑市出售遗物时，哪些遗物能够安全执行 `AfterRemoved` 仍需逐类验证；未知遗物默认不可出售。
+5. 还款界面的实机手柄导航仍需验证。
+6. BaseLib 3.4.5 与游戏 v0.111.0 已完成启动及基础玩法验证；游戏更新后仍需重新检查补丁签名。

@@ -7,5 +7,7 @@
   "SPIREECONOMY-DEBT_HOVER.title": "หนี้",
   "SPIREECONOMY-DEBT_HOVER.description": "ยอดเงินกู้ที่ยังไม่ได้ชำระ สามารถชำระหนี้ได้ที่ร้านค้า",
   "SPIREECONOMY-REPAY_HOVER.title": "ชำระหนี้",
-  "SPIREECONOMY-REPAY_HOVER.description": "เลือกจำนวนที่ต้องการชำระ โดยต้องไม่เกินทองที่มีหรือยอดหนี้คงเหลือ"
+  "SPIREECONOMY-REPAY_HOVER.description": "เลือกจำนวนที่ต้องการชำระ โดยต้องไม่เกินทองที่มีหรือยอดหนี้คงเหลือ",
+  "SPIREECONOMY-REPAY_NO_DEBT": "ข้าตรวจสองรอบแล้ว เจ้าไม่ได้ติดหนี้อะไร จะจ่ายคืนด้วยอากาศหรือ?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "ถุงเงินของเจ้าเงียบเชียวนะ กลับมาเมื่อมันมีอะไรจะพูด"
 }

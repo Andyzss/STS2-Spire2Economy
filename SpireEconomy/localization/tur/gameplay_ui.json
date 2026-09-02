@@ -7,5 +7,7 @@
   "SPIREECONOMY-DEBT_HOVER.title": "Borç",
   "SPIREECONOMY-DEBT_HOVER.description": "Ödenmemiş kredi bakiyen. Borcunu bir tüccarda ödeyebilirsin.",
   "SPIREECONOMY-REPAY_HOVER.title": "Borcu öde",
-  "SPIREECONOMY-REPAY_HOVER.description": "Ödenecek miktarı seç. Mevcut altınından veya kalan borcundan fazlasını ödeyemezsin."
+  "SPIREECONOMY-REPAY_HOVER.description": "Ödenecek miktarı seç. Mevcut altınından veya kalan borcundan fazlasını ödeyemezsin.",
+  "SPIREECONOMY-REPAY_NO_DEBT": "İki kez kontrol ettim. Borcun yok. Havayı mı geri ödeyeceksin?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Kesenden hiç ses çıkmıyor. Söyleyecek bir şeyi olunca geri gel."
 }

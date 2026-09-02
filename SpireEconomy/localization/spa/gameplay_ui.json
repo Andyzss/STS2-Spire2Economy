@@ -7,5 +7,7 @@
   "SPIREECONOMY-DEBT_HOVER.title": "Deuda",
   "SPIREECONOMY-DEBT_HOVER.description": "El saldo pendiente de tu préstamo. Puedes pagar la deuda en un mercader.",
   "SPIREECONOMY-REPAY_HOVER.title": "Pagar deuda",
-  "SPIREECONOMY-REPAY_HOVER.description": "Elige una cantidad. No puedes pagar más que tu oro actual o tu deuda pendiente."
+  "SPIREECONOMY-REPAY_HOVER.description": "Elige una cantidad. No puedes pagar más que tu oro actual o tu deuda pendiente.",
+  "SPIREECONOMY-REPAY_NO_DEBT": "Lo comprobé dos veces. No debes nada. ¿Pensabas pagarme con aire?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Tu bolsa está sospechosamente silenciosa. Vuelve cuando tenga algo que decir."
 }

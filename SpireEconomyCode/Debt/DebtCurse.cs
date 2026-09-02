@@ -15,6 +15,9 @@ public sealed class DebtCurse : SpireEconomyCard
     public DebtCurse()
         : base(0, CardType.Curse, CardRarity.Curse, TargetType.None, showInCardLibrary: false)
     {
+        // Use the game's canonical localized keyword instead of repeating custom
+        // "cannot be played" text in every language.
+        WithKeyword(CardKeyword.Unplayable);
     }
 
     public override bool CanBeGeneratedInCombat => false;

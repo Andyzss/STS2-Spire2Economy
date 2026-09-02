@@ -1,4 +1,4 @@
 {
   "SPIREECONOMY-DEBT_CURSE.title": "Cambiale",
-  "SPIREECONOMY-DEBT_CURSE.description": "Debito residuo: {Debt} oro. NL Non giocabile. Non può essere rimossa normalmente. Viene rimossa quando il debito è saldato."
+  "SPIREECONOMY-DEBT_CURSE.description": "Debito: {Debt} oro.\nViene rimossa automaticamente quando è saldato."
 }

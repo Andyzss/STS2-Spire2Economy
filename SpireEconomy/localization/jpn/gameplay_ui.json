@@ -7,5 +7,7 @@
   "SPIREECONOMY-DEBT_HOVER.title": "借金",
   "SPIREECONOMY-DEBT_HOVER.description": "まだ返済していない借金の総額。商人のもとで返済できます。",
   "SPIREECONOMY-REPAY_HOVER.title": "借金を返済",
-  "SPIREECONOMY-REPAY_HOVER.description": "返済額を選びます。現在のゴールドまたは残りの借金を超えて返済することはできません。"
+  "SPIREECONOMY-REPAY_HOVER.description": "返済額を選びます。現在のゴールドまたは残りの借金を超えて返済することはできません。",
+  "SPIREECONOMY-REPAY_NO_DEBT": "二度確認したが、借金はない。空気でも返すつもりか？",
+  "SPIREECONOMY-REPAY_NO_GOLD": "その財布はずいぶん静かだな。何か話せるようになったら戻ってこい。"
 }

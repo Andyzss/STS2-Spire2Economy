@@ -41,6 +41,9 @@ function Require-Field([string]$typeName, [string]$fieldName, [string]$fieldType
 
 Require-Method "MegaCrit.Sts2.Core.Entities.Merchant.MerchantEntry" "OnTryPurchaseWrapper" @(
     "MegaCrit.Sts2.Core.Entities.Merchant.MerchantInventory", "System.Boolean")
+Require-Type "MegaCrit.Sts2.Core.Entities.Merchant.MerchantPotionEntry" | Out-Null
+Require-Method "MegaCrit.Sts2.Core.Entities.Merchant.MerchantCardRemovalEntry" "OnTryPurchaseWrapper" @(
+    "MegaCrit.Sts2.Core.Entities.Merchant.MerchantInventory", "System.Boolean", "System.Boolean")
 Require-Method "MegaCrit.Sts2.Core.Commands.CardPileCmd" "RemoveFromDeck" @(
     "MegaCrit.Sts2.Core.Models.CardModel", "System.Boolean")
 Require-Method "MegaCrit.Sts2.Core.Commands.CardPileCmd" "RemoveFromDeck" @(
@@ -56,6 +59,8 @@ Require-Method "MegaCrit.Sts2.Core.Nodes.Screens.Shops.NMerchantInventory" "DoOp
 Require-Method "MegaCrit.Sts2.Core.Nodes.Screens.Shops.NMerchantInventory" "OnPurchaseCompleted" @(
     "MegaCrit.Sts2.Core.Entities.Merchant.PurchaseStatus", "MegaCrit.Sts2.Core.Entities.Merchant.MerchantEntry")
 Require-Field "MegaCrit.Sts2.Core.Nodes.Screens.Shops.NMerchantCardRemoval" "_removalVisual" "Godot.Sprite2D"
+Require-Method "MegaCrit.Sts2.Core.Nodes.Screens.Shops.NMerchantDialogue" "ShowRandom" @(
+    'System.Collections.Generic.IEnumerable`1[[MegaCrit.Sts2.Core.Localization.LocString, sts2, Version=0.1.0.0, Culture=neutral, PublicKeyToken=null]]')
 Require-Method "MegaCrit.Sts2.Core.Nodes.Multiplayer.NGenericPopup" "Create" @()
 Require-Method "MegaCrit.Sts2.Core.Nodes.CommonUi.NPopupYesNoButton" "SetText" @("System.String")
 Require-Method "MegaCrit.Sts2.Core.Nodes.CommonUi.NPopupYesNoButton" "DisconnectHotkeys" @()

@@ -7,5 +7,7 @@
   "SPIREECONOMY-DEBT_HOVER.title": "빚",
   "SPIREECONOMY-DEBT_HOVER.description": "아직 갚지 않은 대출 잔액입니다. 상인에게서 빚을 갚을 수 있습니다.",
   "SPIREECONOMY-REPAY_HOVER.title": "빚 갚기",
-  "SPIREECONOMY-REPAY_HOVER.description": "상환액을 선택합니다. 현재 골드나 남은 빚보다 많이 갚을 수 없습니다."
+  "SPIREECONOMY-REPAY_HOVER.description": "상환액을 선택합니다. 현재 골드나 남은 빚보다 많이 갚을 수 없습니다.",
+  "SPIREECONOMY-REPAY_NO_DEBT": "두 번이나 확인했지만 빚은 없어. 설마 공기라도 갚으려고?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "주머니가 너무 조용한데. 할 말이 생기면 다시 와."
 }

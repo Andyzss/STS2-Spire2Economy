@@ -52,25 +52,37 @@ internal static class DebtRepaymentUi
     private sealed class State
     {
         private const float ButtonGap = 10f;
-        private const float ViewportMargin = 24f;
         private const float MaximumButtonWidth = 210f;
         private const float MaximumButtonHeight = 58f;
+        private const float PopupContentHorizontalMargin = 64f;
+        private const float PopupContentTop = 142f;
+        private const float PopupContentBottomMargin = 184f;
         private static readonly System.Reflection.FieldInfo? RemovalVisualField =
             typeof(NMerchantCardRemoval).GetField("_removalVisual",
                 System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+        private static readonly System.Reflection.MethodInfo? MerchantShowRandomMethod =
+            typeof(NMerchantDialogue).GetMethod("ShowRandom",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
 
+        private readonly NMerchantInventory _inventory;
         private readonly Player _player;
         private readonly NMerchantCardRemoval? _cardRemoval;
+        private readonly NMerchantDialogue? _merchantDialogue;
         private readonly Control _shopParent;
         private readonly NPopupYesNoButton _openButton;
         private readonly OfficialHoverTipBinding _hoverTip;
         private NodePath? _originalRemovalTop;
         private bool _busy;
+        private bool _pointerOverButton;
+        private bool _buttonHasFocus;
 
         internal State(NMerchantInventory inventory, Player player)
         {
+            _inventory = inventory;
             _player = player;
             _cardRemoval = inventory.GetNodeOrNull<NMerchantCardRemoval>("%MerchantCardRemoval");
+            _merchantDialogue = inventory.GetNodeOrNull<NMerchantDialogue>("%MerchantDialogue")
+                ?? FindDescendant<NMerchantDialogue>(inventory);
             _shopParent = _cardRemoval?.GetParent<Control>()
                 ?? inventory.GetNode<Control>("%SlotsContainer");
             _openButton = CreateOfficialButton();
@@ -79,6 +91,10 @@ internal static class DebtRepaymentUi
             _openButton.IsYes = true;
             _openButton.FocusMode = Control.FocusModeEnum.All;
             _openButton.Released += OnOpenButtonReleased;
+            _openButton.MouseEntered += OnRepaymentButtonMouseEntered;
+            _openButton.MouseExited += OnRepaymentButtonMouseExited;
+            _openButton.FocusEntered += OnRepaymentButtonFocusEntered;
+            _openButton.FocusExited += OnRepaymentButtonFocusExited;
             _shopParent.AddChild(_openButton);
             _openButton.SetText(Localize("SPIREECONOMY-REPAY_DEBT"));
             // Popup buttons register a global confirm/cancel hotkey by default. This shop action
@@ -93,10 +109,15 @@ internal static class DebtRepaymentUi
             {
                 _originalRemovalTop = _cardRemoval.FocusNeighborTop;
                 _cardRemoval.Resized += QueuePositionUpdate;
+                _cardRemoval.ItemRectChanged += QueuePositionUpdate;
             }
 
             _shopParent.Resized += QueuePositionUpdate;
             _openButton.Resized += QueuePositionUpdate;
+            // Initialize can run before the merchant inventory enters the scene tree. The first
+            // positioning request is then skipped, so schedule one as soon as the button becomes
+            // drawable rather than waiting for the shop's open animation to finish.
+            _openButton.TreeEntered += QueuePositionUpdate;
             DebtManager.DebtChanged += OnDebtChanged;
             _openButton.TreeExiting += OnTreeExiting;
             Refresh();
@@ -105,15 +126,13 @@ internal static class DebtRepaymentUi
 
         internal void Refresh()
         {
-            int debt = DebtManager.GetDebt(_player);
-            bool hasDebt = debt > 0;
-            bool canRepay = !_busy && hasDebt && _player.Gold > 0;
+            bool canInteract = !_busy;
 
-            // The merchant service is always present. Debt/gold only control availability;
-            // this avoids a late save-state synchronization making the entry disappear.
+            // Keep the service clickable even when no payment can be made. In those states the
+            // merchant responds through the vanilla speech bubble with a localized line.
             _openButton.Visible = true;
-            _openButton.SetEnabled(canRepay);
-            _openButton.FocusMode = canRepay
+            _openButton.SetEnabled(canInteract);
+            _openButton.FocusMode = canInteract
                 ? Control.FocusModeEnum.All
                 : Control.FocusModeEnum.None;
             ApplyNavigation();
@@ -180,27 +199,24 @@ internal static class DebtRepaymentUi
             if (_cardRemoval is null || !_openButton.IsInsideTree())
                 return;
 
-            Rect2 visible = _openButton.GetViewport().GetVisibleRect();
             Vector2 nativeSize = _openButton.Size;
             float scale = Math.Min(1f, Math.Min(
                 MaximumButtonWidth / Math.Max(1f, nativeSize.X),
                 MaximumButtonHeight / Math.Max(1f, nativeSize.Y)));
             _openButton.Scale = Vector2.One * scale;
             Vector2 buttonSize = nativeSize * scale;
-            Rect2 removalBounds = GetRemovalVisualBounds();
-            float centeredX = removalBounds.GetCenter().X - buttonSize.X / 2f;
-            float maximumX = Math.Max(visible.Position.X + ViewportMargin,
-                visible.End.X - buttonSize.X - ViewportMargin);
-            float maximumY = Math.Max(visible.Position.Y + ViewportMargin,
-                visible.End.Y - buttonSize.Y - ViewportMargin);
+            Rect2 removalBounds = GetRemovalVisualBoundsInShopParent();
 
-            _openButton.GlobalPosition = new Vector2(
-                Mathf.Clamp(centeredX, visible.Position.X + ViewportMargin, maximumX),
-                Mathf.Clamp(removalBounds.Position.Y - buttonSize.Y - ButtonGap,
-                    visible.Position.Y + ViewportMargin, maximumY));
+            // Both controls belong to the animated merchant slots container. Keeping the
+            // repayment button in that container's local coordinate space makes it enter with
+            // the vanilla shop UI immediately. Viewport/global clamping here would counteract
+            // the opening tween and make the button appear only after the tween completed.
+            _openButton.Position = new Vector2(
+                removalBounds.GetCenter().X - buttonSize.X / 2f,
+                removalBounds.Position.Y - buttonSize.Y - ButtonGap);
         }
 
-        private Rect2 GetRemovalVisualBounds()
+        private Rect2 GetRemovalVisualBoundsInShopParent()
         {
             NMerchantCardRemoval? cardRemoval = _cardRemoval;
             if (cardRemoval is null)
@@ -210,12 +226,13 @@ internal static class DebtRepaymentUi
                 visual.IsInsideTree())
             {
                 Rect2 local = visual.GetRect();
+                Transform2D shopParentInverse = _shopParent.GetGlobalTransform().AffineInverse();
                 Vector2[] corners =
                 [
-                    visual.ToGlobal(local.Position),
-                    visual.ToGlobal(new Vector2(local.End.X, local.Position.Y)),
-                    visual.ToGlobal(local.End),
-                    visual.ToGlobal(new Vector2(local.Position.X, local.End.Y))
+                    shopParentInverse * visual.ToGlobal(local.Position),
+                    shopParentInverse * visual.ToGlobal(new Vector2(local.End.X, local.Position.Y)),
+                    shopParentInverse * visual.ToGlobal(local.End),
+                    shopParentInverse * visual.ToGlobal(new Vector2(local.Position.X, local.End.Y))
                 ];
                 float left = corners.Min(point => point.X);
                 float top = corners.Min(point => point.Y);
@@ -225,7 +242,11 @@ internal static class DebtRepaymentUi
             }
 
             // Conservative fallback for a future game version where the visual field changes.
-            return new Rect2(cardRemoval.GlobalPosition, cardRemoval.Size);
+            Transform2D removalToParent =
+                _shopParent.GetGlobalTransform().AffineInverse() * cardRemoval.GetGlobalTransform();
+            Vector2 topLeft = removalToParent * Vector2.Zero;
+            Vector2 bottomRight = removalToParent * cardRemoval.Size;
+            return new Rect2(topLeft, bottomRight - topLeft);
         }
 
         private async void OnOpenPressed()
@@ -234,6 +255,18 @@ internal static class DebtRepaymentUi
                 return;
 
             int debt = DebtManager.GetDebt(_player);
+            if (debt <= 0)
+            {
+                ShowMerchantLine("SPIREECONOMY-REPAY_NO_DEBT");
+                return;
+            }
+
+            if (_player.Gold <= 0)
+            {
+                ShowMerchantLine("SPIREECONOMY-REPAY_NO_GOLD");
+                return;
+            }
+
             int maximum = Math.Min(Math.Max(0, _player.Gold), debt);
             if (maximum <= 0 || NModalContainer.Instance is null)
                 return;
@@ -272,6 +305,55 @@ internal static class DebtRepaymentUi
 
         private void OnOpenButtonReleased(NClickableControl _) => OnOpenPressed();
 
+        private void ShowMerchantLine(string key)
+        {
+            if (_merchantDialogue is null || MerchantShowRandomMethod is null)
+            {
+                MainFile.Logger.Warn($"Merchant dialogue node unavailable for localization key {key}.");
+                return;
+            }
+
+            MerchantShowRandomMethod?.Invoke(
+                _merchantDialogue,
+                [new LocString[] { new("gameplay_ui", key) }]);
+        }
+
+        private void OnRepaymentButtonMouseEntered()
+        {
+            _pointerOverButton = true;
+            PointMerchantHandAtRepayment();
+        }
+
+        private void OnRepaymentButtonMouseExited()
+        {
+            _pointerOverButton = false;
+            StopMerchantHandIfUntargeted();
+        }
+
+        private void OnRepaymentButtonFocusEntered()
+        {
+            _buttonHasFocus = true;
+            PointMerchantHandAtRepayment();
+        }
+
+        private void OnRepaymentButtonFocusExited()
+        {
+            _buttonHasFocus = false;
+            StopMerchantHandIfUntargeted();
+        }
+
+        private void PointMerchantHandAtRepayment()
+        {
+            if (_openButton.Visible)
+                _inventory.MerchantHand.PointAtTarget(_openButton, Vector2.Zero);
+        }
+
+        private void StopMerchantHandIfUntargeted()
+        {
+            if (!_pointerOverButton && !_buttonHasFocus)
+                _inventory.MerchantHand.StopPointing(2f);
+        }
+
         private static void AddAmountSelector(
             NGenericPopup popup,
             int maximum,
@@ -282,8 +364,9 @@ internal static class DebtRepaymentUi
             VBoxContainer selector = new()
             {
                 Name = "SpireEconomyRepaymentAmountSelector",
-                CustomMinimumSize = new Vector2(440, 128),
-                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill
+                Alignment = BoxContainer.AlignmentMode.Center,
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+                SizeFlagsVertical = Control.SizeFlags.ExpandFill
             };
             Label prompt = new()
             {
@@ -300,7 +383,7 @@ internal static class DebtRepaymentUi
                 AllowGreater = false,
                 AllowLesser = false,
                 FocusMode = Control.FocusModeEnum.All,
-                CustomMinimumSize = new Vector2(420, 42),
+                CustomMinimumSize = new Vector2(0, 42),
                 SizeFlagsHorizontal = Control.SizeFlags.ExpandFill
             };
             Label amountLabel = new()
@@ -324,14 +407,18 @@ internal static class DebtRepaymentUi
             selector.AddChild(amountLabel);
             selector.AddChild(amount);
 
-            // Reuse the space already reserved for the popup body. Adding below the body can be
-            // clipped because NVerticalPopup has a fixed presentation height.
-            MegaRichTextLabel? body = FindDescendant<MegaRichTextLabel>(verticalPopup);
-            Node buttonRow = verticalPopup.YesButton.GetParent();
-            Node selectorParent = body?.GetParent() ?? buttonRow.GetParent();
-            int insertionIndex = body?.GetIndex() ?? buttonRow.GetIndex();
-            selectorParent.AddChild(selector);
-            selectorParent.MoveChild(selector, insertionIndex);
+            // NVerticalPopup is intentionally an absolute-layout Control: its header, body and
+            // buttons are anchored directly to a fixed-size panel. It is not a layout container.
+            // Keep the vanilla panel size and overlay our selector inside the body rectangle.
+            // Calling ResetSize() here would collapse the panel to the selector's minimum size,
+            // which moves the bottom-anchored yes/no buttons to the top edge of the viewport.
+            verticalPopup.AddChild(selector);
+            selector.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
+            selector.OffsetLeft = PopupContentHorizontalMargin;
+            selector.OffsetTop = PopupContentTop;
+            selector.OffsetRight = -PopupContentHorizontalMargin;
+            selector.OffsetBottom = -PopupContentBottomMargin;
+            MegaRichTextLabel? body = verticalPopup.GetNodeOrNull<MegaRichTextLabel>("Description");
             if (body is not null)
                 body.Visible = false;
 
@@ -347,7 +434,6 @@ internal static class DebtRepaymentUi
             verticalPopup.YesButton.FocusNeighborLeft = noPath;
             verticalPopup.NoButton.FocusNeighborRight = yesPath;
             Callable.From(amount.GrabFocus).CallDeferred();
-            Callable.From(verticalPopup.ResetSize).CallDeferred();
         }
 
         private void OnDebtChanged(Player player, int _)
@@ -361,8 +447,16 @@ internal static class DebtRepaymentUi
             DebtManager.DebtChanged -= OnDebtChanged;
             _shopParent.Resized -= QueuePositionUpdate;
             _openButton.Resized -= QueuePositionUpdate;
+            _openButton.TreeEntered -= QueuePositionUpdate;
+            _openButton.MouseEntered -= OnRepaymentButtonMouseEntered;
+            _openButton.MouseExited -= OnRepaymentButtonMouseExited;
+            _openButton.FocusEntered -= OnRepaymentButtonFocusEntered;
+            _openButton.FocusExited -= OnRepaymentButtonFocusExited;
             if (_cardRemoval is not null)
+            {
                 _cardRemoval.Resized -= QueuePositionUpdate;
+                _cardRemoval.ItemRectChanged -= QueuePositionUpdate;
+            }
         }
 
         private static string Localize(string key) =>

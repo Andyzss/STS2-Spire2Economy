@@ -50,7 +50,8 @@ internal static class DebtHud
             _hoverTip = new OfficialHoverTipBinding(
                 _label,
                 "SPIREECONOMY-DEBT_HOVER.title",
-                "SPIREECONOMY-DEBT_HOVER.description");
+                "SPIREECONOMY-DEBT_HOVER.description",
+                OfficialHoverTipPlacement.TopBarBelow);
 
             DebtManager.DebtChanged += OnDebtChanged;
             goldControl.TreeExiting += OnTreeExiting;

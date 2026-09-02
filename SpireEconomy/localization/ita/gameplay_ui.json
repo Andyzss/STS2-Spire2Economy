@@ -7,5 +7,7 @@
   "SPIREECONOMY-DEBT_HOVER.title": "Debito",
   "SPIREECONOMY-DEBT_HOVER.description": "Il saldo del prestito ancora da rimborsare. Puoi saldarlo presso un mercante.",
   "SPIREECONOMY-REPAY_HOVER.title": "Salda debito",
-  "SPIREECONOMY-REPAY_HOVER.description": "Scegli un importo. Non può superare il tuo oro attuale o il debito residuo."
+  "SPIREECONOMY-REPAY_HOVER.description": "Scegli un importo. Non può superare il tuo oro attuale o il debito residuo.",
+  "SPIREECONOMY-REPAY_NO_DEBT": "Ho controllato due volte: non devi nulla. Vuoi restituirmi dell’aria?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Quel borsello è fin troppo silenzioso. Torna quando avrà qualcosa da dire."
 }

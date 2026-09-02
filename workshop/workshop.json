@@ -1,8 +1,8 @@
 {
   "title": "Spire Economy",
-  "description": "Loans, personal debt, multiplayer relic trading, and a black market event.",
+  "description": "Shop loans, personal debt and repayment, plus a future black market event.",
   "visibility": "private",
-  "changeNote": "None",
+  "changeNote": "Updated v0.1 scope: player trading is no longer planned.",
   "tags": [],
   "dependencies": [3737335127],
   "contentDescriptors": []

@@ -1,4 +1,4 @@
 {
   "SPIREECONOMY-DEBT_CURSE.title": "Borç Senedi",
-  "SPIREECONOMY-DEBT_CURSE.description": "Kalan borç: {Debt} Altın. NL Oynanamaz ve normal yollarla kaldırılamaz. Borcun tamamı ödenince kaldırılır."
+  "SPIREECONOMY-DEBT_CURSE.description": "Borç: {Debt} Altın.\nTamamı ödenince otomatik olarak kaldırılır."
 }

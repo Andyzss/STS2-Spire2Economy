@@ -1,4 +1,4 @@
 {
   "SPIREECONOMY-DEBT_CURSE.title": "Reconnaissance de dette",
-  "SPIREECONOMY-DEBT_CURSE.description": "Dette restante : {Debt} pièces d'or. NL Injouable. Ne peut pas être retirée normalement. Retirée une fois la dette remboursée."
+  "SPIREECONOMY-DEBT_CURSE.description": "Dette : {Debt} pièces d'or.\nRetirée automatiquement une fois remboursée."
 }
