@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Mercato nero",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Un mercante incappucciato apre una valigia di merci assenti da ogni registro onesto.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Merci rare brillano sotto il banco. I prezzi sono scandalosi, ma il credito è disponibile.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "Compra {Item} — {Price} Oro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Compra questa reliquia rara. La differenza diventa debito.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "Compra {Item} — {Price} Oro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Compra questa carta rara. La differenza diventa debito.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Vendi una reliquia",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Offri al mercante una reliquia idonea.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Vai via",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Vai via senza comprare nulla.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "Il mercante esamina le reliquie che possono essere rimosse in sicurezza.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "Vendi {Item} — ottieni {Price} Oro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Vendi definitivamente questa reliquia.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Indietro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Torna alla merce.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "Il mercante scuote la testa. Nessuna delle tue reliquie può essere venduta in sicurezza.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "La valigia si chiude e il mercante scompare tra la folla."
+}

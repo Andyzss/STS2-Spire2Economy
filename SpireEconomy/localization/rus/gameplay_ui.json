@@ -8,6 +8,7 @@
   "SPIREECONOMY-DEBT_HOVER.description": "Непогашенный остаток займа. Долг можно выплатить у торговца.",
   "SPIREECONOMY-REPAY_HOVER.title": "Погасить долг",
   "SPIREECONOMY-REPAY_HOVER.description": "Выберите сумму. Она не может превышать имеющееся золото или остаток долга.",
-  "SPIREECONOMY-REPAY_NO_DEBT": "Я дважды проверил: ты ничего не должен. Воздух вернуть хочешь?",
-  "SPIREECONOMY-REPAY_NO_GOLD": "Твой кошель подозрительно тих. Возвращайся, когда ему будет что сказать."
+  "SPIREECONOMY-REPAY_NO_DEBT": "Не делай ничего лишнего, ладно?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Приходи в следующий раз.",
+  "SPIREECONOMY-BLACK_MARKET_ANCIENT_PRICE": "-{MaxHp} макс. ОЗ"
 }

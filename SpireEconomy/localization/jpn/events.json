@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "闇市場",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "フードを被った商人が、まともな帳簿には載らない品を詰めた箱を開く。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "希少な品がカウンターの下で輝く。値段は法外だが、ツケも利くらしい。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "{Item}を購入 — {Price}ゴールド",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "このレアなレリックを購入する。不足分は借金になる。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "{Item}を購入 — {Price}ゴールド",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "このレアカードを購入する。不足分は借金になる。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "レリックを売る",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "売却可能なレリックを商人に提示する。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "立ち去る",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "何も買わずに立ち去る。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "商人は安全に取り外せるレリックを調べている。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "{Item}を売る — {Price}ゴールド獲得",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "このレリックを完全に手放す。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "戻る",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "商品の一覧に戻る。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "商人は首を振る。安全に売れるレリックはない。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "箱が音を立てて閉じ、商人は人混みに消えた。"
+}

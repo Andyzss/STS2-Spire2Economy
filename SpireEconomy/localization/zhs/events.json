@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "黑市",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "一名兜帽商人打开货箱，里面的东西从未出现在任何正经账本上。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "珍稀货物在柜台下闪着微光。价格离谱，不过可以赊账。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "购买{Item}——{Price}金币",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "购买这件稀有遗物，不足的金币将转为欠款。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "购买{Item}——{Price}金币",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "购买这张稀有卡牌，不足的金币将转为欠款。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "出售遗物",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "向商人出售一件符合条件的遗物。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "离开",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "什么也不买，直接离开。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "商人检查着那些能够安全移除的遗物。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "出售{Item}——获得{Price}金币",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "永久出售这件遗物。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "返回",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "返回黑市商品列表。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "商人摇了摇头。你没有能够安全出售的遗物。",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "货箱啪地合上，商人转眼便消失在人群之中。"
+}

@@ -8,6 +8,7 @@
   "SPIREECONOMY-DEBT_HOVER.description": "你尚未償還的貸款總額。欠款可以在商人處償還。",
   "SPIREECONOMY-REPAY_HOVER.title": "償還欠款",
   "SPIREECONOMY-REPAY_HOVER.description": "選擇要償還的金額。還款不能超過你目前的金幣或尚未償還的欠款。",
-  "SPIREECONOMY-REPAY_NO_DEBT": "我翻了兩遍帳本。你什麼都不欠——打算還空氣嗎？",
-  "SPIREECONOMY-REPAY_NO_GOLD": "你的錢袋安靜得很。等它有話可說再來吧。"
+  "SPIREECONOMY-REPAY_NO_DEBT": "不要做多餘的事情哦。",
+  "SPIREECONOMY-REPAY_NO_GOLD": "請下次再來。",
+  "SPIREECONOMY-BLACK_MARKET_ANCIENT_PRICE": "-{MaxHp} 最大生命"
 }

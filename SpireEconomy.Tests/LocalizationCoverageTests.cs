@@ -15,7 +15,7 @@ public sealed class LocalizationCoverageTests
     public void EveryGameLanguageHasTheSameLocalizationKeys()
     {
         string localizationRoot = FindLocalizationRoot();
-        string[] tables = ["cards.json", "gameplay_ui.json", "settings_ui.json"];
+        string[] tables = ["cards.json", "events.json", "gameplay_ui.json", "settings_ui.json"];
 
         foreach (string table in tables)
         {

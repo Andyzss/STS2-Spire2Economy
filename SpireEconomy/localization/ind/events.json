@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Pasar Gelap",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Pedagang bertudung membuka peti berisi barang yang tak pernah tercatat dalam buku jujur mana pun.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Barang langka berkilau di bawah meja. Harganya keterlaluan, tetapi kredit tersedia.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "Beli {Item} — {Price} Emas",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Beli relik Langka ini. Kekurangannya menjadi utang.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "Beli {Item} — {Price} Emas",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Beli kartu Langka ini. Kekurangannya menjadi utang.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Jual relik",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Tawarkan relik yang memenuhi syarat kepada pedagang.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Pergi",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Pergi tanpa membeli apa pun.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "Pedagang memeriksa relik yang dapat dilepas dengan aman.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "Jual {Item} — dapatkan {Price} Emas",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Jual relik ini secara permanen.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Kembali",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Kembali ke daftar barang.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "Pedagang menggeleng. Tidak ada relikmu yang aman untuk dijual.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "Peti menutup rapat dan pedagang lenyap di tengah kerumunan."
+}

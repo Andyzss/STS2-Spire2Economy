@@ -132,6 +132,12 @@ internal static class DebtRepaymentUi
             // merchant responds through the vanilla speech bubble with a localized line.
             _openButton.Visible = true;
             _openButton.SetEnabled(canInteract);
+            // NPopupYesNoButton normally owns a global "select" hotkey because popup confirm
+            // buttons must react without focus. SetEnabled() registers that hotkey again, so it
+            // must be removed after every refresh. Focused GUI input remains intact: mouse clicks
+            // still work, and keyboard/controller confirm works only after directional navigation
+            // has explicitly focused the repayment button.
+            _openButton.DisconnectHotkeys();
             _openButton.FocusMode = canInteract
                 ? Control.FocusModeEnum.All
                 : Control.FocusModeEnum.None;

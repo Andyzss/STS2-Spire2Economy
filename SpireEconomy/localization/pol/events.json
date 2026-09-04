@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Czarny rynek",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Zakapturzony handlarz otwiera skrzynię z towarem, którego nie ma w żadnej uczciwej księdze.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Rzadkie towary lśnią pod ladą. Ceny są oburzające, ale można kupić na kredyt.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "Kup {Item} — {Price} złota",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Kup ten rzadki relikt. Brakująca kwota stanie się długiem.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "Kup {Item} — {Price} złota",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Kup tę rzadką kartę. Brakująca kwota stanie się długiem.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Sprzedaj relikt",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Zaoferuj handlarzowi odpowiedni relikt.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Odejdź",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Odejdź bez kupowania.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "Handlarz ogląda relikty, które można bezpiecznie usunąć.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "Sprzedaj {Item} — zyskaj {Price} złota",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Sprzedaj ten relikt na stałe.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Wróć",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Wróć do listy towarów.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "Handlarz kręci głową. Żadnego z twoich reliktów nie można bezpiecznie sprzedać.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "Skrzynia zatrzaskuje się, a handlarz znika w tłumie."
+}

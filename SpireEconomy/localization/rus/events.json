@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Чёрный рынок",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Торговец в капюшоне открывает ящик с товарами, которых нет ни в одной честной книге.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Редкие товары блестят под прилавком. Цены безумны, но можно взять в долг.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "Купить {Item} — {Price} золота",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Купить эту редкую реликвию. Недостающая сумма станет долгом.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "Купить {Item} — {Price} золота",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Купить эту редкую карту. Недостающая сумма станет долгом.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Продать реликвию",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Предложить торговцу подходящую реликвию.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Уйти",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Уйти, ничего не покупая.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "Торговец осматривает реликвии, которые можно безопасно снять.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "Продать {Item} — получить {Price} золота",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Навсегда продать эту реликвию.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Назад",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Вернуться к товарам.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "Торговец качает головой. Ни одну из ваших реликвий нельзя безопасно продать.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "Ящик захлопывается, и торговец исчезает в толпе."
+}

@@ -5,5 +5,6 @@
   "SPIREECONOMY-BLACK_MARKET.title": "Чёрный рынок",
   "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "Множитель цен Чёрного рынка",
   "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "Стоимость продажи реликвий",
-  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Вес события Чёрного рынка"
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Вес события Чёрного рынка",
+  "SPIREECONOMY-RELIC_SALE_DENYLIST.title": "Список запрещённых к продаже реликвий"
 }

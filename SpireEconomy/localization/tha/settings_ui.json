@@ -5,5 +5,6 @@
   "SPIREECONOMY-BLACK_MARKET.title": "ตลาดมืด",
   "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "ตัวคูณราคาตลาดมืด",
   "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "มูลค่าขายรีลิก",
-  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "น้ำหนักอีเวนต์ตลาดมืด"
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "น้ำหนักอีเวนต์ตลาดมืด",
+  "SPIREECONOMY-RELIC_SALE_DENYLIST.title": "รายการรีลิกที่ห้ามขาย"
 }

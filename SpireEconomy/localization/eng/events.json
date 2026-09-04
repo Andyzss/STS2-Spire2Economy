@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Black Market",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "A hooded broker opens a case of goods that never appeared on any honest ledger.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Rare merchandise glints beneath the counter. The prices are outrageous, but credit is available.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "Buy {Item} — {Price} Gold",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Purchase this Rare relic. Any shortfall becomes debt.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "Buy {Item} — {Price} Gold",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Purchase this Rare card. Any shortfall becomes debt.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Sell a relic",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Offer an eligible relic to the broker.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Leave",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Leave without buying anything.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "The broker inspects the relics that can be removed safely.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "Sell {Item} — gain {Price} Gold",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Permanently sell this relic.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Back",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Return to the market inventory.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "The broker shakes their head. None of your relics are safe to sell.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "The case snaps shut, and the broker disappears into the crowd."
+}

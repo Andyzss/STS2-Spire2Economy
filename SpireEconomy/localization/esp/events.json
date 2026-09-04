@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Mercado negro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Un mercader encapuchado abre una caja con mercancía que no figura en ningún libro honrado.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Artículos raros brillan bajo el mostrador. Los precios son abusivos, pero se acepta crédito.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "Comprar {Item} — {Price} de Oro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Compra esta reliquia rara. Lo que falte se convertirá en deuda.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "Comprar {Item} — {Price} de Oro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Compra esta carta rara. Lo que falte se convertirá en deuda.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Vender una reliquia",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Ofrece al mercader una reliquia válida.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Marcharse",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Márchate sin comprar nada.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "El mercader examina las reliquias que pueden retirarse con seguridad.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "Vender {Item} — obtener {Price} de Oro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Vende esta reliquia de forma permanente.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Volver",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Vuelve a la mercancía.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "El mercader niega con la cabeza. Ninguna de tus reliquias se puede vender con seguridad.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "La caja se cierra de golpe y el mercader desaparece entre la multitud."
+}

@@ -5,5 +5,6 @@
   "SPIREECONOMY-BLACK_MARKET.title": "Black Market",
   "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "Black Market price multiplier",
   "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "Relic sale value",
-  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Black Market event weight"
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Black Market event weight",
+  "SPIREECONOMY-RELIC_SALE_DENYLIST.title": "Relic sale denylist"
 }

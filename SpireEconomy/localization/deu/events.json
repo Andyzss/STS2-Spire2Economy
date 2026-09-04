@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Schwarzmarkt",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Ein verhüllter Händler öffnet einen Koffer mit Waren, die in keinem ehrlichen Buch stehen.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Seltene Waren glänzen unter dem Tresen. Die Preise sind unverschämt, doch Kredit ist möglich.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "{Item} kaufen — {Price} Gold",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Kaufe dieses seltene Relikt. Der Fehlbetrag wird zu Schulden.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "{Item} kaufen — {Price} Gold",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Kaufe diese seltene Karte. Der Fehlbetrag wird zu Schulden.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Relikt verkaufen",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Biete dem Händler ein geeignetes Relikt an.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Gehen",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Gehe, ohne etwas zu kaufen.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "Der Händler prüft die Relikte, die sich sicher entfernen lassen.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "{Item} verkaufen — {Price} Gold erhalten",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Verkaufe dieses Relikt dauerhaft.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Zurück",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Zurück zum Warenangebot.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "Der Händler schüttelt den Kopf. Keines deiner Relikte lässt sich sicher verkaufen.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "Der Koffer schnappt zu und der Händler verschwindet in der Menge."
+}

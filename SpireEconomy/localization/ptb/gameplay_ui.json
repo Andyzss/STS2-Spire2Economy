@@ -8,6 +8,7 @@
   "SPIREECONOMY-DEBT_HOVER.description": "O saldo restante do seu empréstimo. A dívida pode ser paga em um mercador.",
   "SPIREECONOMY-REPAY_HOVER.title": "Quitar dívida",
   "SPIREECONOMY-REPAY_HOVER.description": "Escolha um valor. Ele não pode superar seu ouro atual nem a dívida restante.",
-  "SPIREECONOMY-REPAY_NO_DEBT": "Conferi duas vezes. Você não deve nada. Vai pagar com ar?",
-  "SPIREECONOMY-REPAY_NO_GOLD": "Essa bolsa está quieta demais. Volte quando ela tiver algo a dizer."
+  "SPIREECONOMY-REPAY_NO_DEBT": "Não faça nada desnecessário, está bem?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Volte na próxima vez, por favor.",
+  "SPIREECONOMY-BLACK_MARKET_ANCIENT_PRICE": "-{MaxHp} PV máx."
 }

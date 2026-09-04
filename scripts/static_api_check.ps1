@@ -44,6 +44,29 @@ Require-Method "MegaCrit.Sts2.Core.Entities.Merchant.MerchantEntry" "OnTryPurcha
 Require-Type "MegaCrit.Sts2.Core.Entities.Merchant.MerchantPotionEntry" | Out-Null
 Require-Method "MegaCrit.Sts2.Core.Entities.Merchant.MerchantCardRemovalEntry" "OnTryPurchaseWrapper" @(
     "MegaCrit.Sts2.Core.Entities.Merchant.MerchantInventory", "System.Boolean", "System.Boolean")
+foreach ($merchantUiType in @(
+    "MegaCrit.Sts2.Core.Nodes.Screens.Shops.NMerchantCard",
+    "MegaCrit.Sts2.Core.Nodes.Screens.Shops.NMerchantRelic",
+    "MegaCrit.Sts2.Core.Nodes.Screens.Shops.NMerchantPotion",
+    "MegaCrit.Sts2.Core.Nodes.Screens.Shops.NMerchantCardRemoval")) {
+    Require-Method $merchantUiType "UpdateVisual" @()
+    Require-Method $merchantUiType "OnTryPurchase" @(
+        "MegaCrit.Sts2.Core.Entities.Merchant.MerchantInventory")
+}
+Require-Method "MegaCrit.Sts2.Core.Models.Relics.LordsParasol" "PurchaseEverything" @(
+    "MegaCrit.Sts2.Core.Entities.Merchant.MerchantInventory")
+Require-Method "MegaCrit.Sts2.Core.Models.Relics.TheCourier" "ShouldRefillMerchantEntry" @(
+    "MegaCrit.Sts2.Core.Entities.Merchant.MerchantEntry",
+    "MegaCrit.Sts2.Core.Entities.Players.Player")
+Require-Method "MegaCrit.Sts2.Core.Models.Relics.MembershipCard" "ModifyMerchantPrice" @(
+    "MegaCrit.Sts2.Core.Entities.Players.Player",
+    "MegaCrit.Sts2.Core.Entities.Merchant.MerchantEntry",
+    "System.Decimal")
+Require-Method "MegaCrit.Sts2.Core.Commands.PlayerCmd" "LoseGold" @(
+    "System.Decimal", "MegaCrit.Sts2.Core.Entities.Players.Player",
+    "MegaCrit.Sts2.Core.Entities.Gold.GoldLossType")
+Require-Method "MegaCrit.Sts2.Core.Commands.PlayerCmd" "GainGold" @(
+    "System.Decimal", "MegaCrit.Sts2.Core.Entities.Players.Player", "System.Boolean")
 Require-Method "MegaCrit.Sts2.Core.Commands.CardPileCmd" "RemoveFromDeck" @(
     "MegaCrit.Sts2.Core.Models.CardModel", "System.Boolean")
 Require-Method "MegaCrit.Sts2.Core.Commands.CardPileCmd" "RemoveFromDeck" @(
@@ -106,6 +129,21 @@ if ($baseLibDependency.min_version -ne "3.4.5") { throw "Manifest must require B
 $godotPath = [string]$directoryBuild.Project.PropertyGroup.GodotPath
 if ([string]::IsNullOrWhiteSpace($godotPath) -or -not (Test-Path -LiteralPath $godotPath)) {
     throw "Directory.Build.props does not point to an existing Godot executable."
+}
+
+$releaseInfoPath = Join-Path $GamePath "release_info.json"
+$releaseInfo = Get-Content -LiteralPath $releaseInfoPath -Raw | ConvertFrom-Json
+if ($releaseInfo.version -ne "v0.111.0") {
+    throw "Compatibility audit targets STS2 v0.111.0, installed version is $($releaseInfo.version)."
+}
+
+$patchSource = Get-ChildItem (Join-Path $PSScriptRoot "..\SpireEconomyCode\Patches") -Filter "*.cs" |
+    ForEach-Object { Get-Content -LiteralPath $_.FullName -Raw }
+if (($patchSource -join "`n") -match "HarmonyPatch\s*\(\s*typeof\s*\(\s*PlayerCmd\s*\)") {
+    throw "Global PlayerCmd patch detected; vanilla gold changes must remain isolated from Debt."
+}
+if (($patchSource -join "`n") -match "HasRelic\s*\([^)]*LordsParasol|typeof\s*\(\s*LordsParasol") {
+    throw "Relic-specific Lord's Parasol compatibility hack detected; use transaction context instead."
 }
 
 Write-Output "Static API and project-file checks passed for sts2.dll v0.111.0 targets."

@@ -5,5 +5,6 @@
   "SPIREECONOMY-BLACK_MARKET.title": "Marché noir",
   "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "Multiplicateur de prix du marché noir",
   "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "Valeur de vente des reliques",
-  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Poids de l'événement Marché noir"
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Poids de l'événement Marché noir",
+  "SPIREECONOMY-RELIC_SALE_DENYLIST.title": "Liste d'exclusion des reliques à vendre"
 }

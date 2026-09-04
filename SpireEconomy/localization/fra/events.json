@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Marché noir",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Un marchand encapuchonné ouvre une mallette de marchandises absentes de tout registre honnête.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Des articles rares brillent sous le comptoir. Les prix sont indécents, mais le crédit est accepté.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "Acheter {Item} — {Price} Or",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Achetez cette relique rare. Le montant manquant devient une dette.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "Acheter {Item} — {Price} Or",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Achetez cette carte rare. Le montant manquant devient une dette.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Vendre une relique",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Proposez une relique admissible au marchand.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Partir",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Partez sans rien acheter.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "Le marchand examine les reliques qui peuvent être retirées sans danger.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "Vendre {Item} — gagner {Price} Or",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Vendez définitivement cette relique.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Retour",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Retournez aux marchandises.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "Le marchand secoue la tête. Aucune de vos reliques ne peut être vendue sans danger.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "La mallette se referme et le marchand disparaît dans la foule."
+}

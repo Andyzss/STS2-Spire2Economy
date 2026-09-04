@@ -8,6 +8,7 @@
   "SPIREECONOMY-DEBT_HOVER.description": "Le solde restant de votre emprunt. La dette peut être remboursée chez un marchand.",
   "SPIREECONOMY-REPAY_HOVER.title": "Rembourser la dette",
   "SPIREECONOMY-REPAY_HOVER.description": "Choisissez un montant. Il ne peut dépasser votre or actuel ni votre dette restante.",
-  "SPIREECONOMY-REPAY_NO_DEBT": "J’ai vérifié deux fois : tu ne dois rien. Tu comptes rembourser de l’air ?",
-  "SPIREECONOMY-REPAY_NO_GOLD": "Ta bourse est bien silencieuse. Reviens quand elle aura quelque chose à dire."
+  "SPIREECONOMY-REPAY_NO_DEBT": "Ne fais rien d’inutile, d’accord ?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Reviens la prochaine fois, s’il te plaît.",
+  "SPIREECONOMY-BLACK_MARKET_ANCIENT_PRICE": "-{MaxHp} PV max"
 }

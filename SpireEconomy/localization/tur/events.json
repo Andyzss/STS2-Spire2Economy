@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Karaborsa",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Kapüşonlu bir tüccar, hiçbir dürüst kayıtta yer almayan mallarla dolu bir sandık açar.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Nadir mallar tezgâhın altında parlıyor. Fiyatlar fahiş ama veresiye mümkün.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "{Item} satın al — {Price} Altın",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Bu Nadir kalıntıyı satın al. Eksik tutar borca dönüşür.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "{Item} satın al — {Price} Altın",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Bu Nadir kartı satın al. Eksik tutar borca dönüşür.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Kalıntı sat",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Uygun bir kalıntıyı tüccara teklif et.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Ayrıl",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Hiçbir şey almadan ayrıl.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "Tüccar güvenle çıkarılabilecek kalıntıları inceliyor.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "{Item} sat — {Price} Altın kazan",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Bu kalıntıyı kalıcı olarak sat.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Geri",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Mal listesine dön.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "Tüccar başını sallar. Kalıntılarından hiçbiri güvenle satılamaz.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "Sandık kapanır ve tüccar kalabalığın içinde kaybolur."
+}

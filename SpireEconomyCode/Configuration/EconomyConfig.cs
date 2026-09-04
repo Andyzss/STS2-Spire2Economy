@@ -20,4 +20,10 @@ internal sealed class EconomyConfig : SimpleModConfig
 
     [ConfigSlider(0, 100, 1, Format = "{0}%")]
     public static int BlackMarketEventWeightPercent { get; set; } = 3;
+
+    [ConfigTextInput(MaxLength = 2048)]
+    public static string RelicSaleDenylist { get; set; } = string.Empty;
+
+    [ConfigTextInput(MaxLength = 2048)]
+    public static string BlackMarketSpecialRelicDenylist { get; set; } = string.Empty;
 }

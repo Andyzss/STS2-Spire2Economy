@@ -8,6 +8,7 @@
   "SPIREECONOMY-DEBT_HOVER.description": "Your outstanding loan balance. Debt can be repaid at a merchant.",
   "SPIREECONOMY-REPAY_HOVER.title": "Repay Debt",
   "SPIREECONOMY-REPAY_HOVER.description": "Choose an amount to repay. You cannot repay more than your current gold or outstanding debt.",
-  "SPIREECONOMY-REPAY_NO_DEBT": "I checked twice. You don't owe me anything. Planning to repay the air?",
-  "SPIREECONOMY-REPAY_NO_GOLD": "That purse is awfully quiet. Come back when it has something to say."
+  "SPIREECONOMY-REPAY_NO_DEBT": "Don't do anything unnecessary, okay?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Please come again next time.",
+  "SPIREECONOMY-BLACK_MARKET_ANCIENT_PRICE": "-{MaxHp} Max HP"
 }

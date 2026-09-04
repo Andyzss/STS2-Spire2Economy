@@ -29,11 +29,12 @@ public static class LoanService
     internal static bool CanBorrowFromDebt(int outstandingDebt, int amount) =>
         LoanMath.CanBorrow(outstandingDebt, amount, EconomyConfig.MaxDebt);
 
-    public static bool CanFinancePurchase(Player player, int purchasePrice)
-    {
-        int shortfall = GetPurchaseShortfall(player, purchasePrice);
-        return shortfall > 0 && CanBorrow(player, shortfall);
-    }
+    public static bool CanFinancePurchase(Player player, PurchaseContext context) =>
+        MerchantFinancingPolicy.Evaluate(
+            context,
+            player.Gold,
+            DebtManager.GetDebt(player),
+            EconomyConfig.MaxDebt).Allowed;
 
     /// <summary>
     /// Runs a purchase callback and commits only its shortfall as debt after the callback reports
@@ -41,24 +42,26 @@ public static class LoanService
     /// </summary>
     public static async Task<bool> TryFinancePurchase(
         Player player,
-        int purchasePrice,
+        PurchaseContext context,
         Func<Task<bool>> purchase)
     {
         SemaphoreSlim gate = FinancingLocks.GetValue(player, _ => new SemaphoreSlim(1, 1));
         await gate.WaitAsync();
         try
         {
-            int shortfall = GetPurchaseShortfall(player, purchasePrice);
-            if (shortfall == 0)
-                return await purchase();
-            if (!CanBorrow(player, shortfall))
+            FinancingDecision decision = MerchantFinancingPolicy.Evaluate(
+                context,
+                player.Gold,
+                DebtManager.GetDebt(player),
+                EconomyConfig.MaxDebt);
+            if (!decision.Allowed)
                 return false;
 
             bool purchased = await purchase();
             if (!purchased)
                 return false;
 
-            if (!await DebtManager.TryAddDebtAsync(player, shortfall))
+            if (!await DebtManager.TryAddDebtAsync(player, decision.Shortfall))
                 throw new InvalidOperationException("The item was granted but its debt could not be persisted.");
 
             return true;

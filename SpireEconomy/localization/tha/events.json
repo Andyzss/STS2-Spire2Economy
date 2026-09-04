@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "ตลาดมืด",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "พ่อค้าสวมฮู้ดเปิดหีบสินค้าที่ไม่เคยปรากฏในบัญชีสุจริตเล่มใด",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "สินค้าหายากส่องประกายใต้เคาน์เตอร์ ราคาแพงลิบ แต่ซื้อด้วยสินเชื่อได้",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "ซื้อ {Item} — {Price} ทอง",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "ซื้อรีลิกหายากชิ้นนี้ ส่วนที่ขาดจะกลายเป็นหนี้",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "ซื้อ {Item} — {Price} ทอง",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "ซื้อการ์ดหายากใบนี้ ส่วนที่ขาดจะกลายเป็นหนี้",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "ขายรีลิก",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "เสนอรีลิกที่ขายได้ให้พ่อค้า",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "จากไป",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "จากไปโดยไม่ซื้ออะไร",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "พ่อค้าตรวจดูรีลิกที่สามารถถอดออกได้อย่างปลอดภัย",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "ขาย {Item} — รับ {Price} ทอง",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "ขายรีลิกชิ้นนี้อย่างถาวร",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "กลับ",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "กลับไปยังรายการสินค้า",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "พ่อค้าส่ายหน้า ไม่มีรีลิกชิ้นใดของเจ้าที่ขายได้อย่างปลอดภัย",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "หีบปิดดังฉับ และพ่อค้าก็หายเข้าไปในฝูงชน"
+}

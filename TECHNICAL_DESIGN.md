@@ -52,6 +52,11 @@ BaseLib 继续负责现有卡牌、配置和存档集成。RitsuLib 0.5.18 已�
 - `MerchantEntry.PurchaseCompleted` / `PurchaseFailed`：购买结果事件。
 - `Hook.ModifyMerchantPrice(...)`：标准价格修改。
 - `Hook.AfterItemPurchased(...)`：购买成功后的通知。
+- `LordsParasol.PurchaseEverything(...)`：以 `ignoreCost=true` 逐项调用原版购买包装器，
+  包含卡牌、遗物、药水和免费卡牌移除。
+- `TheCourier.ShouldRefillMerchantEntry(...)`：成功购买后由原版包装器决定补货。
+- `NMerchantCard/Relic/Potion/CardRemoval.OnTryPurchase(...)`：可证明玩家从商店 UI
+  主动发起单次交易的最窄调用边界。
 - `NMerchantInventory`：商店 Godot UI；`Open`、`Close`、`UpdateNavigation` 等方法存在。
 
 结论：标准 API 能读价格和观察成功购买，但没有“余额不足时由外部支付差额”的公开钩子。
@@ -139,9 +144,10 @@ Normal Shop Adapter ─┐
                      ├─> LoanService ─> DebtManager ─> DebtCurse(saved amount)
 Black Market Adapter ┘
 
-BlackMarketEvent ─> BlackMarketInventory
-        ├──────────> LoanService (purchase only)
-        └──────────> RelicSaleRules / game relic lifecycle APIs (sale only)
+BlackMarketEvent ─> BlackMarketMerchantInventoryFactory ─> MerchantInventory
+        ├──────────> native merchant_room.tscn / NMerchantInventory presentation
+        ├──────────> LoanService through the normal merchant purchase wrapper
+        └──────────> RelicSaleRules / game relic lifecycle APIs (sale service; UI pending)
 ```
 
 边界规则：
@@ -156,7 +162,8 @@ BlackMarketEvent ─> BlackMarketInventory
 - `CardRarity` 实际值为：`None, Basic, Common, Uncommon, Rare, Ancient, Event, Token, Status, Curse, Quest`。
 - 游戏没有 `Gold` 卡牌稀有度；v0.1 黑市卡池按已确认规则使用 `Rare`。
 - `RelicRarity` 实际值为：`None, Starter, Common, Uncommon, Rare, Shop, Event, Ancient`。
-- v0.1 黑市高稀有遗物池只使用 `Rare`，明确排除 `Shop` 与 `Ancient`。
+- 最初 v0.1 规则只允许 `Rare`；当前设计已扩展为 1 件经过安全筛选的 `Ancient` 加 1 件
+  `Rare`，仍明确排除 `Shop`。该扩展需要继续通过实机平衡验证。
 
 ### 3.1 DebtManager
 
@@ -166,7 +173,8 @@ BlackMarketEvent ─> BlackMarketInventory
 
 ### 3.2 LoanService
 
-输入：玩家、最终价格、购买来源、执行购买的回调。算法必须满足：
+输入：玩家、`PurchaseContext` 和执行购买的回调。上下文保存来源、是否要求金币、
+最终 `MerchantEntry.Cost` 与商品类型。算法必须满足：
 
 1. `shortfall = max(0, price - player.Gold)`。
 2. `shortfall == 0` 时走原购买路径。
@@ -175,6 +183,9 @@ BlackMarketEvent ─> BlackMarketInventory
 5. 以一次性 `MerchantEntry` 预约防止重复回调重复记债；原版返回失败时恢复购买前金币且不记债。
 6. 当前原版回调先发商品、后由补丁持久化债务；若 Debt 卡添加异常，无法借助公开 API 原子撤销
    已发放遗物。当前选择抛出显式错误而不是静默赠送，运行测试前这是一个未闭合的 API 风险。
+7. 只有 `PurchaseSource.PlayerInitiated` 可以建立预约；UI 预览只改变显示可用性，自动、强制、
+   免费、未知与非商店来源全部拒绝。
+8. 收费卡牌移除是项目所有者明确保留的融资例外；免费/自动移除仍拒绝。
 
 ### 3.3 DebtCurse
 
@@ -192,21 +203,42 @@ BlackMarketEvent ─> BlackMarketInventory
 
 ### 3.5 BlackMarketEvent / BlackMarketInventory
 
-事件非共享，每名玩家独立处理。初始选项始终含“离开”。库存为：
+事件非共享，每名玩家独立处理。事件使用 `EventLayoutType.Custom`，但场景直接复用原版
+`merchant_room.tscn`；Harmony 适配层把事件库存接入原版 `NMerchantRoom` 与 `NMerchantInventory`。
+不能使用 `fake_merchant.tscn` 承载卡牌，因为该场景的展示槽是遗物网格，会出现只有价格而没有
+卡牌模型的问题。鼠标、键盘/手柄导航、商人手指、悬停说明、卡牌移除选择及购买反馈继续由
+原版商店 UI 负责。库存为：
 
-- 2 个 `RelicRarity.Rare` 遗物；v0.1 排除 Shop 与 Ancient。
-- 2–3 张 `CardRarity.Rare` 卡；游戏没有 Gold 卡牌稀有度。
+进入事件时只展示房间，不自动打开库存。玩家点击商人才打开商品页；关闭商品页后由原版
+`InventoryClosed` 回调重新启用商人与离开按钮。领主阳伞只在本次事件第一次打开库存时结算，
+避免配合补货反复免费取得商品。
+
+- 2 张本职业 `CardRarity.Rare` 卡。
+- 2 张无色 `CardRarity.Rare` 卡。
+- 3 张其他可玩角色卡：`Common`、`Uncommon`、`Rare` 各一张。
+- 2 件遗物；优先放入一件通过能力检查及 denylist 的 `Ancient` 遗物，其余以 `Rare` 补足。
+- 3 瓶按原版规则生成的随机药水。
+- 1 个卡牌移除服务，基础价格固定为 200。
 - v0.1 不生成 mystery slot。
 
-价格为基础商店价乘 `BlackMarketPricePercent / 100m`。卖价为基础价乘
-`RelicSalePricePercent / 100m`。购买通过 `LoanService`；出售先经资格规则，再通过正式遗物移除
-生命周期，最后增加金币。失败时必须回滚。
+卡牌在原版基础价格上增加 25%，药水和普通遗物保留原版基础价格；之后再调用原版 `Hook.ModifyMerchantPrice`，因此会员卡与
+补货折扣有效。`The Courier` 使用原版补货入口。`Lord's Parasol` 使用 `ignoreCost=true` 的原版购买包装器逐槽取得
+商品，不创建债务。卖价为基础价乘 `RelicSalePricePercent / 100m`；出售业务服务保留，但商店式
+界面的出售按钮仍待实现。
+
+`Ancient` 遗物在原版中不是普通商店商品，部分模型的 `MerchantCost` 是不可购买的哨兵值。
+黑市不得直接使用该数值；当前统一采用命名基础价 200，再应用原版折扣。
+
+`Ancient` 遗物额外随机收取 5–15 点最大生命。金额随商品生成并保持稳定，以较小的红色原版数字显示在金币价格正下方；
+购买失败不扣除，购买成功只结算一次，`ignoreCost=true`（领主阳伞）不结算该代价。普通 Rare 与
+非 Ancient 遗物不损失最大生命；Event 遗物不会进入当前特殊商品池。
 
 ## 4. 预计需要的 Harmony 补丁
 
 ### 本阶段已加入
 
-1. `MerchantEntry.get_EnoughGold`：对标准商店卡牌、遗物、药水和卡牌移除服务提供融资可用性。
+1. `MerchantEntry.get_EnoughGold`：只在匹配的 UI preview/player transaction scope 中，对标准
+   商店卡牌、遗物、药水和卡牌移除服务提供融资可用性。
 2. `MerchantEntry.OnTryPurchaseWrapper`：建立一次性融资预约，成功后记入精确短缺额，失败不改债务。
 3. `MerchantCardRemovalEntry.OnTryPurchaseWrapper`：覆盖卡牌移除专用的异步购买包装器；取消选牌
    时释放预约，成功移除后才提交债务。
@@ -218,6 +250,16 @@ BlackMarketEvent ─> BlackMarketInventory
    还款控件，使其跟随商店动画并接入基础键盘/手柄焦点图。
 8. `NTopBarGold.Initialize`：在原版金币控件旁挂载独立的债务文本子节点。节点不参与原版布局，
    因此不会挤压或移动其他顶部栏控件。
+9. `Hook.ModifyNextEvent`：在原版完成事件选择后使用运行 RNG 按配置概率替换为黑市；已访问后不再
+   抽取。黑市自身 `IsAllowed=false`，避免同时作为无权重的普通 BaseLib 事件进入队列。
+10. 四类 `NMerchant*.UpdateVisual` / `OnTryPurchase`：分别建立短生命周期的 UI 预览与玩家主动
+   购买上下文，使 Lord's Parasol、AutoSlay 和未知直接调用者天然绕过 LoanService。
+11. `MerchantEntry.get_Cost`：仅对标记为黑市的库存，在事件房中补调用原版价格 Hook，使
+    Membership Card 与 The Courier 的折扣生效。
+12. 三类黑市 `MerchantEntry.CalcCost`：卡牌和遗物每次生成/补货后重套黑市倍率；移除服务固定
+    200 基础价。普通商店条目没有黑市标记，不受影响。
+13. `NMerchantInventory.GetClosestStockedSlot`：原版默认每个商店展示槽都有 Entry；黑市刻意留下
+    未使用槽位时改用带 null 检查的最近库存槽搜索，避免手柄导航在 `_Ready` 阶段中断。
 
 ### 本地化策略
 

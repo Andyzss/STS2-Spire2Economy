@@ -5,5 +5,6 @@
   "SPIREECONOMY-BLACK_MARKET.title": "Mercado negro",
   "SPIREECONOMY-BLACK_MARKET_PRICE_PERCENT.title": "Multiplicador de precios del mercado negro",
   "SPIREECONOMY-RELIC_SALE_PRICE_PERCENT.title": "Valor de venta de reliquias",
-  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Peso del evento de mercado negro"
+  "SPIREECONOMY-BLACK_MARKET_EVENT_WEIGHT_PERCENT.title": "Peso del evento de mercado negro",
+  "SPIREECONOMY-RELIC_SALE_DENYLIST.title": "Lista de reliquias no vendibles"
 }

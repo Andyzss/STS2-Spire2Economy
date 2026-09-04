@@ -8,6 +8,7 @@
   "SPIREECONOMY-DEBT_HOVER.description": "Dein noch nicht zurückgezahlter Kredit. Schulden können beim Händler getilgt werden.",
   "SPIREECONOMY-REPAY_HOVER.title": "Schulden tilgen",
   "SPIREECONOMY-REPAY_HOVER.description": "Wähle einen Betrag. Du kannst nicht mehr als dein Gold oder deine Schulden zurückzahlen.",
-  "SPIREECONOMY-REPAY_NO_DEBT": "Ich habe zweimal nachgesehen. Du schuldest nichts. Willst du etwa Luft zurückzahlen?",
-  "SPIREECONOMY-REPAY_NO_GOLD": "Dein Geldbeutel ist verdächtig still. Komm wieder, wenn er etwas zu sagen hat."
+  "SPIREECONOMY-REPAY_NO_DEBT": "Mach nichts Unnötiges, ja?",
+  "SPIREECONOMY-REPAY_NO_GOLD": "Komm bitte nächstes Mal wieder.",
+  "SPIREECONOMY-BLACK_MARKET_ANCIENT_PRICE": "-{MaxHp} max. LP"
 }

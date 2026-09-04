@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "암시장",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "후드를 쓴 상인이 어떤 정직한 장부에도 없는 물건이 든 상자를 연다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "희귀한 상품이 진열대 아래에서 빛난다. 가격은 터무니없지만 외상은 가능하다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "{Item} 구매 — {Price} 골드",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "이 희귀 유물을 구매한다. 부족한 금액은 빚이 된다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "{Item} 구매 — {Price} 골드",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "이 희귀 카드를 구매한다. 부족한 금액은 빚이 된다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "유물 판매",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "판매 가능한 유물을 상인에게 제시한다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "떠난다",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "아무것도 사지 않고 떠난다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "상인이 안전하게 제거할 수 있는 유물을 살핀다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "{Item} 판매 — {Price} 골드 획득",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "이 유물을 영구히 판매한다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "뒤로",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "상품 목록으로 돌아간다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "상인이 고개를 젓는다. 안전하게 팔 수 있는 유물이 없다.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "상자가 닫히고 상인은 군중 속으로 사라진다."
+}

@@ -1,0 +1,20 @@
+{
+  "SPIREECONOMY-BLACK_MARKET_EVENT.title": "Mercado negro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.INITIAL.description": "Um mercador encapuzado abre uma mala de mercadorias que não aparecem em nenhum registro honesto.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.description": "Mercadorias raras brilham sob o balcão. Os preços são absurdos, mas há crédito.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.title": "Comprar {Item} — {Price} de Ouro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_RELIC.description": "Compre esta relíquia rara. O valor que faltar vira dívida.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.title": "Comprar {Item} — {Price} de Ouro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.BUY_CARD.description": "Compre esta carta rara. O valor que faltar vira dívida.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.title": "Vender uma relíquia",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.OPEN_SELL.description": "Ofereça uma relíquia válida ao mercador.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.title": "Sair",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.MARKET.options.LEAVE.description": "Saia sem comprar nada.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.description": "O mercador examina as relíquias que podem ser removidas com segurança.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.title": "Vender {Item} — receber {Price} de Ouro",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.SELL_RELIC.description": "Venda esta relíquia permanentemente.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.title": "Voltar",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL.options.BACK.description": "Volte às mercadorias.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.SELL_EMPTY.description": "O mercador balança a cabeça. Nenhuma de suas relíquias pode ser vendida com segurança.",
+  "SPIREECONOMY-BLACK_MARKET_EVENT.pages.LEAVE.description": "A mala se fecha e o mercador desaparece na multidão."
+}
