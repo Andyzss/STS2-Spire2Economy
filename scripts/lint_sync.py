@@ -2,7 +2,7 @@
 """Static linter for the three-way rule.
 
 Each card must stay in sync in its three locations (CONTRIBUTING.md):
-  1. code:  a card class under <Mod>Code/Cards/
+  1. code:  a card class under <Mod>Code/ (cards may live with their owning system)
   2. loc:   <MODID>-<SNAKE>.title / .description in localization/eng/cards.json
   3. csv:   a row in cards.csv (the design sheet)
 
@@ -57,6 +57,10 @@ ASSET_SPECS = [
 # the default art for the *ImagePath helpers; no class uses it
 FALLBACK_ART = {"card.png", "power.png", "relic.png", "relic_outline.png", "potion.png"}
 
+# Entities that intentionally use the matching default art above until bespoke art exists.
+# Keep this list explicit so an accidentally missing asset still fails the check.
+ENTITY_FALLBACK_ART = {("card", "DebtCurse")}
+
 
 def norm(name: str) -> str:
     """Make a comparison key from a display name or a class name."""
@@ -78,27 +82,40 @@ def load_cards_csv() -> list[dict]:
     return rows
 
 
-def entity_classes(subdir: str, base_marker: str) -> dict[str, Path]:
-    """class name -> file, for every concrete class under <Mod>Code/<subdir>.
+def classes_under(root: Path, base_marker: str) -> dict[str, Path]:
+    """Class name -> file for every concrete public subclass below root.
 
     The function compares base_marker with the base list. Thus "Card" matches the mod's
     card base class, and "Power" matches every power subclass. The function ignores an
     abstract class: it has no model id, so it has no assets
     """
-    out = {}
-    if not (CODE / subdir).is_dir():
+    out: dict[str, Path] = {}
+    if not root.is_dir():
         return out
-    for path in (CODE / subdir).rglob("*.cs"):
-        for m in re.finditer(r"public\s+(abstract\s+)?class\s+(\w+)\s*:\s*([\w<>, ]+)", path.read_text()):
-            is_abstract, name, bases = m.groups()
+    class_pattern = re.compile(
+        r"public\s+((?:(?:abstract|sealed|partial)\s+)*)class\s+(\w+)\s*:\s*([\w<>,. ]+)"
+    )
+    for path in root.rglob("*.cs"):
+        for m in class_pattern.finditer(path.read_text(encoding="utf-8")):
+            modifiers, name, bases = m.groups()
+            is_abstract = "abstract" in modifiers.split()
             if not is_abstract and base_marker in bases:
                 out[name] = path
     return out
 
 
+def entity_classes(subdir: str, base_marker: str) -> dict[str, Path]:
+    """Concrete entity classes in one conventional entity directory."""
+    return classes_under(CODE / subdir, base_marker)
+
+
 def card_classes() -> dict[str, Path]:
-    """class name -> file, for every concrete card subclass."""
-    return entity_classes("Cards", "Card")
+    """Concrete card subclasses anywhere in the code architecture.
+
+    System-owned cards such as DebtCurse intentionally live beside their service code
+    instead of being forced into the generic Cards directory.
+    """
+    return classes_under(CODE, "Card")
 
 
 def asset_name(class_name: str) -> str:
@@ -118,7 +135,10 @@ def check_assets() -> tuple[list[str], list[str], int]:
     claimed: set[Path] = set()
 
     for label, subdir, marker, variants in ASSET_SPECS:
-        for cls in sorted(entity_classes(subdir, marker)):
+        classes = card_classes() if label == "card" else entity_classes(subdir, marker)
+        for cls in sorted(classes):
+            if (label, cls) in ENTITY_FALLBACK_ART:
+                continue
             for variant, img_dir, template in variants:
                 path = IMG / img_dir / template.format(s=asset_name(cls))
                 claimed.add(path)
